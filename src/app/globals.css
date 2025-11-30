@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #09090b;
+    --bg-secondary: #121215;
+    --bg-tertiary: #1a1a1e;
+    --bg-card: #141417;
+    --bg-elevated: #1e1e22;
+    
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #71717a;
+    
+    --accent-purple: #9333ea;
+    --accent-purple-light: #c084fc;
+    --accent-blue: #2563eb;
+    --accent-blue-light: #60a5fa;
+    --accent-green: #10b981;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-[#09090b] text-[#fafafa] font-hebrew antialiased;
+    font-family: 'Heebo', system-ui, sans-serif;
+    direction: rtl;
+  }
+}
+
+@layer utilities {
+  .font-hebrew {
+    font-family: 'Heebo', system-ui, sans-serif;
+  }
+  
+  .font-english {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  .gradient-primary {
+    @apply bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-br from-purple-400 via-purple-500 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .glass-effect {
+    @apply bg-[rgba(24,24,27,0.7)] backdrop-blur-[20px] border border-white/10;
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 80px rgba(147, 51, 234, 0.4), 0 0 120px rgba(168, 85, 247, 0.2);
+  }
+  
+  .glow-blue {
+    box-shadow: 0 0 80px rgba(37, 99, 235, 0.4), 0 0 120px rgba(59, 130, 246, 0.2);
+  }
+}
