@@ -29,9 +29,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Keep landing page files
-!index.html
-!styles.css
-!script.js
-!vercel.json
-!LANDING_README.md
+# Keep all project files except build artifacts

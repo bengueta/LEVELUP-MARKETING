@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.expo/
+dist/
+web-build/
+build/
+
+# Generated files
+.expo-shared/
+*.log
+*.tsbuildinfo
+
+# Native
+ios/
+android/
+
+# Package manager
+package-lock.json
+yarn.lock
+
