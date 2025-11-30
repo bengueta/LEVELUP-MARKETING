@@ -18,13 +18,7 @@ import A11yPanel from '@/components/A11yPanel';
 
 export default function Home() {
   useEffect(() => {
-    // Initialize GSAP and animations
-    if (typeof window !== 'undefined') {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        const { gsap } = require('gsap');
-        gsap.registerPlugin(ScrollTrigger);
-      });
-    }
+    // GSAP will be loaded dynamically in components
   }, []);
 
   return (
