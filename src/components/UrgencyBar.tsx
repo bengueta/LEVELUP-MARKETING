@@ -22,7 +22,7 @@ export default function UrgencyBar() {
       setDays(String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0'));
       setHours(String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0'));
       setMinutes(String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0'));
-      setSeconds(String(Math.floor((diff % (1000 * 60)) / 1000).padStart(2, '0'));
+      setSeconds(String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0'));
     };
 
     updateTimer();

@@ -29,7 +29,7 @@ export default function Hero() {
         delay: 1.2,
         onUpdate: function() {
           const counter = document.querySelector('[data-count]');
-          if (counter) counter.textContent = Math.floor(this.targets()[0].value);
+          if (counter) counter.textContent = String(Math.floor(this.targets()[0].value));
         }
       });
     };

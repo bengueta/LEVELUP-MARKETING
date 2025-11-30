@@ -18,6 +18,9 @@ const heebo = Heebo({
 export const metadata: Metadata = {
   title: "CoreSide | שותפות טכנולוגית, לא עסקת פיתוח",
   description: "שותפות טכנולוגית עם skin in the game אמיתי. אנחנו מרוויחים רק אם אתה מרוויח. 0₪ מראש.",
+};
+
+export const viewport = {
   themeColor: "#0a0a0b",
 };
 
