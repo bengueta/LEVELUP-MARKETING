@@ -5,35 +5,36 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-let gsap: any;
-if (typeof window !== 'undefined') {
-  gsap = require('gsap');
-}
-
 export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
 
   useEffect(() => {
-    // Animate hero elements
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    
-    tl.to('#heroBadge', { opacity: 1, y: 0, duration: 0.6 })
-      .to('.hero-title-word', { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, '-=0.3')
-      .to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-      .to('#heroStats', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-      .to('#heroActions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-      .to('#heroTrust', { opacity: 1, duration: 0.5 }, '-=0.2');
+    const animate = async () => {
+      const { gsap } = await import('gsap');
+      
+      // Animate hero elements
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      
+      tl.to('#heroBadge', { opacity: 1, y: 0, duration: 0.6 })
+        .to('.hero-title-word', { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, '-=0.3')
+        .to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+        .to('#heroStats', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+        .to('#heroActions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
+        .to('#heroTrust', { opacity: 1, duration: 0.5 }, '-=0.2');
 
-    // Counter animation
-    gsap.to({ value: 13 }, {
-      value: 13,
-      duration: 2,
-      delay: 1.2,
-      onUpdate: function() {
-        const counter = document.querySelector('[data-count]');
-        if (counter) counter.textContent = Math.floor(this.targets()[0].value);
-      }
-    });
+      // Counter animation
+      gsap.to({ value: 0 }, {
+        value: 13,
+        duration: 2,
+        delay: 1.2,
+        onUpdate: function() {
+          const counter = document.querySelector('[data-count]');
+          if (counter) counter.textContent = Math.floor(this.targets()[0].value);
+        }
+      });
+    };
+
+    animate();
 
     // Viewer count fluctuation
     const interval = setInterval(() => {

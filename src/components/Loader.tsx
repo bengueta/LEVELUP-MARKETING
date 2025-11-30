@@ -2,16 +2,20 @@
 
 import { useEffect, useState } from 'react';
 
-let gsap: any;
-if (typeof window !== 'undefined') {
-  gsap = require('gsap');
-}
-
 export default function Loader() {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
+    const animate = async () => {
+      const { gsap } = await import('gsap');
+      
+      gsap.to('.loader-logo', { opacity: 1, duration: 0.4 });
+      gsap.to('.loader-text', { opacity: 1, duration: 0.3, delay: 0.2 });
+    };
+
+    animate();
+
     let currentProgress = 0;
     const interval = setInterval(() => {
       currentProgress += Math.random() * 25;
@@ -25,23 +29,24 @@ export default function Loader() {
       setProgress(currentProgress);
     }, 60);
 
-    gsap.to('.loader-logo', { opacity: 1, duration: 0.4 });
-    gsap.to('.loader-text', { opacity: 1, duration: 0.3, delay: 0.2 });
-
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (isComplete) {
-      gsap.to('#loader', {
-        yPercent: -100,
-        duration: 0.7,
-        ease: 'power3.inOut',
-        onComplete: () => {
-          const loader = document.getElementById('loader');
-          if (loader) loader.style.display = 'none';
-        }
-      });
+      const animate = async () => {
+        const { gsap } = await import('gsap');
+        gsap.to('#loader', {
+          yPercent: -100,
+          duration: 0.7,
+          ease: 'power3.inOut',
+          onComplete: () => {
+            const loader = document.getElementById('loader');
+            if (loader) loader.style.display = 'none';
+          }
+        });
+      };
+      animate();
     }
   }, [isComplete]);
 

@@ -2,11 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-let gsap: any;
-if (typeof window !== 'undefined') {
-  gsap = require('gsap');
-}
-
 export default function UrgencyBar() {
   const [days, setDays] = useState('00');
   const [hours, setHours] = useState('00');
@@ -34,15 +29,17 @@ export default function UrgencyBar() {
     const interval = setInterval(updateTimer, 1000);
 
     // Show bar
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsVisible(true);
+      const { gsap } = await import('gsap');
       gsap.to('#urgencyBar', { y: 0, duration: 0.5, ease: 'power3.out' });
     }, 500);
 
     return () => clearInterval(interval);
   }, []);
 
-  const handleClose = () => {
+  const handleClose = async () => {
+    const { gsap } = await import('gsap');
     gsap.to('#urgencyBar', {
       y: -100,
       duration: 0.3,
