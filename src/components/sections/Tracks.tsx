@@ -169,7 +169,10 @@ export default function Tracks() {
                 </ul>
 
                 <button
-                  onClick={() => smoothScrollToGSAP('contact', 100)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToGSAP('contact', 100);
+                  }}
                   className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full text-sm font-bold transition-all hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 ${track.ctaStyle}`}
                 >
                   {track.cta}

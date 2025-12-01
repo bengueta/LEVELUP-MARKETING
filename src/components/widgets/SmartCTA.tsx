@@ -128,7 +128,8 @@ export default function SmartCTA({ section }: SmartCTAProps) {
               יש לך שאלות? בואו נדבר. אנחנו כאן כדי לעזור.
             </p>
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 setShowExitIntent(false);
                 smoothScrollToGSAP('contact', 100);
               }}

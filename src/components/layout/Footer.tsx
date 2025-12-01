@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 import { Z_INDEX } from '@/lib/zIndex';
-import { Z_INDEX } from '@/lib/zIndex';
 
 export default function Footer() {
   return (

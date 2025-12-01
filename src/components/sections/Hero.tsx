@@ -89,7 +89,10 @@ export default function Hero() {
           {/* CTA */}
           <div id="heroActions" className="mb-10 opacity-0 translate-y-5">
             <button
-              onClick={() => smoothScrollToGSAP('contact', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('contact', 100);
+              }}
               className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group ripple-effect focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               <span className="relative z-10">התחל פרויקט</span>
