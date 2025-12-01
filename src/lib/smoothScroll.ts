@@ -23,10 +23,18 @@ export const smoothScrollToGSAP = async (elementId: string, offset: number = 80)
     // Wait for DOM to be ready
     if (typeof window === 'undefined') return;
     
+    // Wait a bit for lazy-loaded components to render
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     const element = document.getElementById(elementId);
     if (!element) {
-      // Fallback ל-smooth scroll רגיל
-      smoothScrollTo(elementId, offset);
+      // Retry after a short delay for lazy-loaded sections
+      setTimeout(() => {
+        const retryElement = document.getElementById(elementId);
+        if (retryElement) {
+          smoothScrollTo(elementId, offset);
+        }
+      }, 300);
       return;
     }
 

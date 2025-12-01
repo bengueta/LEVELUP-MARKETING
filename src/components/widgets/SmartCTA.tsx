@@ -70,7 +70,10 @@ export default function SmartCTA({ section }: SmartCTAProps) {
       {/* Floating CTA Button - Only show when sticky bar is hidden on desktop */}
       {showFloating && (
         <button
-          onClick={() => smoothScrollToGSAP('contact', 100)}
+          onClick={(e) => {
+            e.preventDefault();
+            smoothScrollToGSAP('contact', 100);
+          }}
           className="fixed bottom-8 left-1/2 -translate-x-1/2 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn focus:outline-none focus:ring-2 focus:ring-purple-500 will-change-transform"
           style={{ zIndex: Z_INDEX.SMART_CTA_FLOATING }}
         >
@@ -88,7 +91,10 @@ export default function SmartCTA({ section }: SmartCTAProps) {
             <span className="text-white font-semibold">מוכן להתחיל?</span> בואו נדבר על הפרויקט שלך
           </div>
           <button
-            onClick={() => smoothScrollToGSAP('contact', 100)}
+            onClick={(e) => {
+              e.preventDefault();
+              smoothScrollToGSAP('contact', 100);
+            }}
             className="px-5 md:px-6 py-2 md:py-3 gradient-primary text-white text-xs md:text-sm font-bold rounded-full transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 whitespace-nowrap"
           >
             התחל עכשיו
