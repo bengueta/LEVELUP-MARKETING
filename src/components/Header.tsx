@@ -1,20 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 import { Z_INDEX } from '@/lib/zIndex';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header 
@@ -107,13 +99,100 @@ export default function Header() {
       
       {/* Mobile Menu Button */}
       <button 
-        className="md:hidden w-8 h-8 flex items-center justify-center text-white"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="lg:hidden w-8 h-8 flex items-center justify-center text-white"
         aria-label="תפריט"
+        aria-expanded={isMobileMenuOpen}
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        {isMobileMenuOpen ? (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        )}
       </button>
+      
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div 
+          className="lg:hidden fixed top-[73px] left-0 right-0 bg-[rgba(9,9,11,0.98)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+          style={{ zIndex: Z_INDEX.HEADER }}
+        >
+          <nav className="px-4 py-6">
+            <ul className="flex flex-col gap-4 list-none">
+              <li>
+                <button
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  בית
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    smoothScrollToGSAP('tracks', 100);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  שירותים
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    smoothScrollToGSAP('process', 100);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  תהליך
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    smoothScrollToGSAP('testimonials', 100);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  המלצות
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    smoothScrollToGSAP('about', 100);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  צוות
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    smoothScrollToGSAP('contact', 100);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
+                >
+                  יצירת קשר
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
