@@ -143,8 +143,9 @@ export default function Header() {
             <ul className="flex flex-col gap-4 list-none">
               <li>
                 <button
-                  onClick={() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToGSAP('hero', 0);
                     setIsMobileMenuOpen(false);
                   }}
                   className="text-base font-medium text-[#a1a1aa] hover:text-white transition-colors w-full text-right"
