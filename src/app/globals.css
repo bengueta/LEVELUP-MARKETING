@@ -279,7 +279,8 @@ body {
 }
 
 /* Light Theme */
-.light-theme {
+.light-theme,
+.light-theme body {
   --bg-primary: #fafafa;
   --bg-secondary: #f4f4f5;
   --bg-tertiary: #e4e4e7;
@@ -289,21 +290,65 @@ body {
   --text-primary: #09090b;
   --text-secondary: #27272a;
   --text-tertiary: #52525b;
-}
-
-.light-theme body {
-  background: #fafafa;
-  color: #09090b;
+  
+  background: #fafafa !important;
+  color: #09090b !important;
 }
 
 .light-theme .glass-effect {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 .light-theme .glass-effect-2 {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.light-theme main {
+  background: #fafafa !important;
+  color: #09090b !important;
+}
+
+.light-theme section {
+  background: transparent !important;
+}
+
+.light-theme .bg-\[#121215\] {
+  background-color: #f4f4f5 !important;
+}
+
+.light-theme .bg-\[#09090b\] {
+  background-color: #fafafa !important;
+}
+
+.light-theme .text-\[#fafafa\] {
+  color: #09090b !important;
+}
+
+.light-theme .text-\[#a1a1aa\] {
+  color: #27272a !important;
+}
+
+.light-theme .text-\[#71717a\] {
+  color: #52525b !important;
+}
+
+/* Dark Theme */
+.dark-theme,
+.dark-theme body {
+  --bg-primary: #09090b;
+  --bg-secondary: #121215;
+  --bg-tertiary: #1a1a1e;
+  --bg-card: #141417;
+  --bg-elevated: #1e1e22;
+  
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  
+  background: #09090b !important;
+  color: #fafafa !important;
 }
 
 /* Reduced Motion */

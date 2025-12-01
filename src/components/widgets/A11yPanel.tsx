@@ -9,10 +9,13 @@ export default function A11yPanel() {
   const [fontSize, setFontSize] = useState('normal');
   const [contrast, setContrast] = useState('normal');
   const [motion, setMotion] = useState('normal');
+  const [direction, setDirection] = useState<'rtl' | 'ltr'>('rtl');
 
   useEffect(() => {
     // Apply accessibility settings
     const root = document.documentElement;
+    const html = document.documentElement;
+    const body = document.body;
     
     // Font size
     root.style.setProperty('--font-size-multiplier', 
@@ -22,26 +25,45 @@ export default function A11yPanel() {
     // Contrast
     if (contrast === 'high') {
       root.classList.add('high-contrast');
+      body.classList.add('high-contrast');
     } else {
       root.classList.remove('high-contrast');
+      body.classList.remove('high-contrast');
     }
     
     // Reduced motion
     if (motion === 'reduced') {
       root.classList.add('reduced-motion');
+      body.classList.add('reduced-motion');
     } else {
       root.classList.remove('reduced-motion');
+      body.classList.remove('reduced-motion');
     }
 
-    // Theme
+    // Theme - מוחל על html ו-body
     if (theme === 'light') {
-      root.classList.add('light-theme');
-      root.classList.remove('dark-theme');
+      html.classList.add('light-theme');
+      html.classList.remove('dark-theme');
+      body.classList.add('light-theme');
+      body.classList.remove('dark-theme');
+      html.style.backgroundColor = '#fafafa';
+      body.style.backgroundColor = '#fafafa';
+      body.style.color = '#09090b';
     } else {
-      root.classList.add('dark-theme');
-      root.classList.remove('light-theme');
+      html.classList.add('dark-theme');
+      html.classList.remove('light-theme');
+      body.classList.add('dark-theme');
+      body.classList.remove('light-theme');
+      html.style.backgroundColor = '#09090b';
+      body.style.backgroundColor = '#09090b';
+      body.style.color = '#fafafa';
     }
-  }, [fontSize, contrast, motion, theme]);
+
+    // Direction (RTL/LTR)
+    html.setAttribute('dir', direction);
+    html.setAttribute('lang', direction === 'rtl' ? 'he' : 'en');
+    body.style.direction = direction;
+  }, [fontSize, contrast, motion, theme, direction]);
 
   useEffect(() => {
     // Keyboard navigation
@@ -103,17 +125,49 @@ export default function A11yPanel() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setTheme('dark')}
-                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${theme === 'dark' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 ${theme === 'dark' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
                     aria-pressed={theme === 'dark'}
                   >
-                    🌙 לילה
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span>לילה</span>
                   </button>
                   <button
                     onClick={() => setTheme('light')}
-                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${theme === 'light' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 ${theme === 'light' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
                     aria-pressed={theme === 'light'}
                   >
-                    ☀️ יום
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>יום</span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">כיוון שפה</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setDirection('rtl')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 ${direction === 'rtl' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    aria-pressed={direction === 'rtl'}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 002 2h2.945M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>עברית (RTL)</span>
+                  </button>
+                  <button
+                    onClick={() => setDirection('ltr')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 flex items-center justify-center gap-2 ${direction === 'ltr' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    aria-pressed={direction === 'ltr'}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 002 2h2.945M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>English (LTR)</span>
                   </button>
                 </div>
               </div>
