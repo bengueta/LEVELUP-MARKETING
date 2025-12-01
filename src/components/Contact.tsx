@@ -114,7 +114,23 @@ export default function Contact() {
               disabled={isSubmitting || submitSuccess}
               className="flex-shrink-0 px-8 py-4 h-[52px] gradient-primary text-white text-base font-extrabold rounded-xl transition-all hover:-translate-y-1 hover:scale-[1.02] glow-purple border-2 border-white/20 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
             >
-              {submitSuccess ? '✓ נשלח בהצלחה!' : isSubmitting ? 'שולח...' : '🚀 שלח עכשיו - תשובה תוך 24 שעות'}
+              {submitSuccess ? (
+                <span className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  נשלח בהצלחה!
+                </span>
+              ) : isSubmitting ? (
+                'שולח...'
+              ) : (
+                <span className="flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                  שלח עכשיו - תשובה תוך 24 שעות
+                </span>
+              )}
             </button>
           </div>
 

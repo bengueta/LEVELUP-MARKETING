@@ -93,7 +93,9 @@ export default function UrgencyBar() {
         className="fixed top-0 left-0 right-0 z-[101] gradient-primary px-6 py-3 flex items-center justify-center gap-4 -translate-y-full"
       >
         <span className="text-sm font-semibold text-white flex items-center gap-2 flex-wrap justify-center">
-          <span>🔥</span>
+          <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+          </svg>
           <span>רק {spotsLeft} מקומות נותרו לשותפות Q1 2025</span>
           <span className="inline-flex items-center gap-2 bg-black/20 px-3 py-1 rounded text-xs font-bold font-english direction-ltr">
             <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>

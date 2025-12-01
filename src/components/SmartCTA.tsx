@@ -16,13 +16,13 @@ export default function SmartCTA({ section }: SmartCTAProps) {
   const getCTAText = () => {
     switch (section) {
       case 'hero':
-        return '🚀 בדוק התאמה עכשיו - 0₪';
+        return 'בדוק התאמה עכשיו - 0₪';
       case 'tracks':
-        return '💰 בחר מסלול';
+        return 'בחר מסלול';
       case 'testimonials':
-        return '✨ הצטרף ללקוחות המרוצים';
+        return 'הצטרף ללקוחות המרוצים';
       case 'about':
-        return '📞 בואו נדבר';
+        return 'בואו נדבר';
       default:
         return 'התחל פרויקט';
     }

@@ -112,37 +112,57 @@ export default function Testimonials() {
 
         {/* Carousel */}
         <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-[1]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-[1]">
             {visibleTestimonials.map((testimonial, i) => (
-              <ThreeDCard key={`${currentIndex}-${i}`} intensity={8}>
-                <article className="glass-effect-2 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-3 hover:scale-[1.02] hover:border-purple-500/50 hover:glow-purple relative overflow-hidden group h-full">
-                  <div className="absolute top-0 left-0 right-0 h-[3px] gradient-primary scale-x-0 origin-right transition-transform duration-500 group-hover:scale-x-100 group-hover:origin-left" />
+              <article 
+                key={`${currentIndex}-${i}`}
+                className="glass-effect-2 rounded-2xl p-8 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-purple-500/30 relative overflow-hidden group h-full"
+              >
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Breathing glow effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-purple-500/5 group-hover:via-purple-500/3 group-hover:to-blue-500/5 transition-all duration-500 pointer-events-none" />
                   
-                  <div className="flex gap-0.5 mb-5">
+                  {/* Rating Stars */}
+                  <div className="flex gap-1 mb-6">
                     {[...Array(testimonial.rating)].map((_, j) => (
-                      <span key={j} className="text-base text-yellow-500 animate-fadeIn" style={{ animationDelay: `${j * 0.1}s` }}>⭐</span>
+                      <svg 
+                        key={j} 
+                        className="w-5 h-5 text-yellow-400" 
+                        fill="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
                     ))}
                   </div>
 
-                  <div className="text-xs text-purple-400 mb-2 font-semibold">{testimonial.project}</div>
+                  {/* Project Badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 mb-4 w-fit">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                    <span className="text-xs text-purple-300 font-semibold">{testimonial.project}</span>
+                  </div>
 
-                  <blockquote className="text-[1.0625rem] text-[#a1a1aa] leading-[1.8] flex-1 mb-6 relative">
+                  {/* Quote */}
+                  <blockquote className="text-[1.0625rem] text-[#e4e4e7] leading-[1.85] flex-1 mb-8 relative">
+                    <span className="absolute -top-2 -right-2 text-4xl text-purple-500/20 font-serif leading-none">"</span>
                     {testimonial.quote}
                   </blockquote>
 
-                  <footer className="flex items-center gap-4 pt-5 border-t border-white/8">
-                    <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center font-bold text-white text-lg">
+                  <footer className="flex items-center gap-4 pt-6 border-t border-white/10">
+                    <div className="w-14 h-14 gradient-primary rounded-full flex items-center justify-center font-bold text-white text-lg shadow-lg ring-2 ring-purple-500/30">
                       {testimonial.name[0]}
                     </div>
                     <div className="flex-1">
-                      <cite className="text-base font-bold block mb-1 not-italic text-white">
+                      <cite className="text-base font-bold block mb-1.5 not-italic text-white">
                         {testimonial.name}
                       </cite>
-                      <div className="text-[0.8125rem] text-[#71717a]">
+                      <div className="text-sm text-[#a1a1aa] mb-2">
                         {testimonial.role}
                       </div>
                       {testimonial.verified && (
-                        <span className="inline-flex items-center gap-1 text-[0.6875rem] text-green-500 font-semibold mt-1">
+                        <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-400 font-semibold">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                           </svg>
@@ -152,7 +172,6 @@ export default function Testimonials() {
                     </div>
                   </footer>
                 </article>
-              </ThreeDCard>
             ))}
           </div>
 
@@ -165,22 +184,29 @@ export default function Testimonials() {
                 className={`w-12 h-12 rounded-full glass-effect-2 flex items-center justify-center transition-all ${
                   currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
                 }`}
+                aria-label="המלצה קודמת"
               >
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
               
-              <div className="flex gap-2">
-                {Array.from({ length: Math.ceil(filteredTestimonials.length / 3) }).map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i * 3)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      Math.floor(currentIndex / 3) === i ? 'bg-purple-500 w-8' : 'bg-white/20'
-                    }`}
-                  />
-                ))}
+              <div className="flex gap-2 items-center">
+                {Array.from({ length: Math.ceil(filteredTestimonials.length / 3) }).map((_, i) => {
+                  const isActive = Math.floor(currentIndex / 3) === i;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentIndex(i * 3)}
+                      className={`rounded-full transition-all duration-300 ${
+                        isActive 
+                          ? 'bg-purple-500 w-8 h-2 shadow-lg shadow-purple-500/50' 
+                          : 'bg-white/20 w-2 h-2 hover:bg-white/30'
+                      }`}
+                      aria-label={`עבור להמלצה ${i + 1}`}
+                    />
+                  );
+                })}
               </div>
 
               <button
@@ -189,9 +215,10 @@ export default function Testimonials() {
                 className={`w-12 h-12 rounded-full glass-effect-2 flex items-center justify-center transition-all ${
                   currentIndex + 3 >= filteredTestimonials.length ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
                 }`}
+                aria-label="המלצה הבאה"
               >
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
             </div>

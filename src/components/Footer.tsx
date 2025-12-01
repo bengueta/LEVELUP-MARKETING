@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Footer() {
   return (
@@ -29,21 +32,41 @@ export default function Footer() {
           <nav>
             <h4 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-5">ניווט</h4>
             <ul className="list-none space-y-3">
-              {['הבעיה', 'המסלולים', 'לקוחות', 'מי אנחנו', 'צור קשר'].map((link, i) => (
-                <li key={i}>
-                  <Link href={`#${['problems', 'tracks', 'testimonials', 'about', 'contact'][i]}`} className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors">
-                    {link}
-                  </Link>
-                </li>
-              ))}
+              {['הבעיה', 'המסלולים', 'לקוחות', 'מי אנחנו', 'צור קשר'].map((link, i) => {
+                const sectionId = ['problems', 'tracks', 'testimonials', 'about', 'contact'][i];
+                return (
+                  <li key={i}>
+                    <button
+                      onClick={() => smoothScrollToGSAP(sectionId, 100)}
+                      className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                    >
+                      {link}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
           <div>
             <h4 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-5">מסלולים</h4>
             <ul className="list-none space-y-3">
-              <li><Link href="#tracks" className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors">סטארטאפים</Link></li>
-              <li><Link href="#tracks" className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors">בעלי עסקים</Link></li>
+              <li>
+                <button
+                  onClick={() => smoothScrollToGSAP('tracks', 100)}
+                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                >
+                  סטארטאפים
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => smoothScrollToGSAP('tracks', 100)}
+                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                >
+                  בעלי עסקים
+                </button>
+              </li>
             </ul>
           </div>
 

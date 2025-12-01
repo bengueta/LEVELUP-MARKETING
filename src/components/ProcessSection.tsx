@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import ThreeDCard from './ThreeDCard';
 
 const steps = [
   {
@@ -120,15 +119,15 @@ export default function ProcessSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-[1]">
             {steps.map((step, i) => (
-              <ThreeDCard key={i} intensity={10}>
-                <div 
-                  className={`text-center cursor-pointer transition-all duration-300 ${
-                    activeStep === i ? 'scale-105' : ''
-                  }`}
-                  onClick={() => setActiveStep(activeStep === i ? null : i)}
-                  onMouseEnter={() => setHoveredStep(i)}
-                  onMouseLeave={() => setHoveredStep(null)}
-                >
+              <div 
+                key={i}
+                className={`text-center cursor-pointer transition-all duration-500 ${
+                  activeStep === i ? 'scale-105' : ''
+                }`}
+                onClick={() => setActiveStep(activeStep === i ? null : i)}
+                onMouseEnter={() => setHoveredStep(i)}
+                onMouseLeave={() => setHoveredStep(null)}
+              >
                   {/* Number */}
                   <div className={`text-4xl font-black mb-4 transition-colors ${
                     activeStep === i || hoveredStep === i ? 'gradient-text' : 'text-[#71717a]'
@@ -136,11 +135,15 @@ export default function ProcessSection() {
                     {step.number}
                   </div>
                   
-                  {/* Icon */}
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
-                    activeStep === i || hoveredStep === i ? 'scale-110 shadow-2xl' : ''
+                  {/* Icon - אנימציה קבועה עדינה */}
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg transition-all duration-500 ${
+                    activeStep === i || hoveredStep === i ? 'scale-110 shadow-2xl ring-2 ring-purple-500/30' : 'animate-breathe'
                   }`}>
-                    {step.icon}
+                    <div className={`transition-transform duration-500 ${
+                      hoveredStep === i ? 'rotate-6' : ''
+                    }`}>
+                      {step.icon}
+                    </div>
                   </div>
                   
                   {/* Content */}
@@ -163,7 +166,6 @@ export default function ProcessSection() {
                     </div>
                   )}
                 </div>
-              </ThreeDCard>
             ))}
           </div>
 
