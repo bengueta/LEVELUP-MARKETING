@@ -1,9 +1,8 @@
 'use client';
 
-'use client';
-
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import DataVisualization from './DataVisualization';
 
 export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
@@ -18,9 +17,8 @@ export default function Hero() {
       tl.to('#heroBadge', { opacity: 1, y: 0, duration: 0.6 })
         .to('.hero-title-word', { opacity: 1, y: 0, duration: 0.8, stagger: 0.12 }, '-=0.3')
         .to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-        .to('#heroStats', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
         .to('#heroActions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-        .to('#heroTrust', { opacity: 1, duration: 0.5 }, '-=0.2');
+        .to('#heroFeatures', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3');
 
       // Counter animation
       gsap.to({ value: 0 }, {
@@ -48,7 +46,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center px-8 py-24 relative overflow-hidden">
+    <section className="min-h-screen flex items-center px-16 py-24 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[160%] h-full bg-gradient-to-br from-purple-600/20 via-blue-600/15 to-green-500/10 blur-[100px] animate-pulse" />
@@ -56,80 +54,81 @@ export default function Hero() {
              style={{ maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)' }} />
       </div>
 
-      <div className="relative z-[2] text-center max-w-[900px]">
-        {/* Trust Badge */}
-        <div id="heroBadge" className="inline-flex items-center gap-3 px-5 py-2 glass-effect rounded-full text-sm font-medium text-[#a1a1aa] mb-8 opacity-0 translate-y-5">
-          <span className="flex items-center gap-1">
+      <div className="relative z-[2] w-full max-w-[1600px] mx-auto grid grid-cols-[1fr_1.2fr] gap-16 items-center">
+        {/* Left: Data Visualization */}
+        <div className="h-[600px]">
+          <DataVisualization />
+        </div>
+
+        {/* Right: Content */}
+        <div className="text-right">
+          {/* Trust Badge */}
+          <div id="heroBadge" className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-600/30 rounded-full text-sm font-medium text-purple-300 mb-6 opacity-0 translate-y-5">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          </span>
-          <span>מקבלים שותפויות חדשות • נותרו 3 מקומות</span>
-        </div>
-
-        {/* Headline */}
-        <h1 className="text-[clamp(3rem,9vw,6rem)] font-black leading-[1.05] tracking-[-4px] mb-8 gradient-text">
-          <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
-            אנחנו לא בית תוכנה.
-          </span>
-          <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
-            אנחנו שותפים.
-          </span>
-        </h1>
-
-        {/* Subtitle */}
-        <p id="heroSubtitle" className="text-[clamp(1.125rem,2vw,1.375rem)] text-[#a1a1aa] max-w-[640px] mx-auto mb-8 leading-[1.7] opacity-0 translate-y-5">
-          שותפות טכנולוגית עם skin in the game אמיתי.<br />
-          <strong className="text-[#fafafa]">אנחנו מרוויחים רק אם אתה מרוויח.</strong> 0₪ מראש.
-        </p>
-
-        {/* Stats */}
-        <div id="heroStats" className="flex justify-center gap-12 mb-10 opacity-0 translate-y-5">
-          <div className="text-center relative">
-            <div data-count="0" className="font-english text-[2.5rem] font-black gradient-text mb-2">0</div>
-            <div className="text-[0.8125rem] text-[#71717a]">שנות ניסיון</div>
+            <span>₪0 מראש - אנחנו מרוויחים רק כשאתה מרוויח</span>
           </div>
-          <div className="text-center relative before:content-[''] before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:w-px before:h-10 before:bg-white/8">
-            <div className="font-english text-[2.5rem] font-black gradient-text mb-2">50/50</div>
-            <div className="text-[0.8125rem] text-[#71717a]">שותפות אמיתית</div>
-          </div>
-          <div className="text-center relative before:content-[''] before:absolute before:-left-6 before:top-1/2 before:-translate-y-1/2 before:w-px before:h-10 before:bg-white/8">
-            <div className="font-english text-[2.5rem] font-black gradient-text mb-2">0₪</div>
-            <div className="text-[0.8125rem] text-[#71717a]">תשלום מראש</div>
-          </div>
-        </div>
 
-        {/* CTA */}
-        <div id="heroActions" className="flex flex-col items-center gap-4 opacity-0 translate-y-5">
-          <Link 
-            href="#contact" 
-            className="inline-flex items-center justify-center gap-3 px-10 py-6 gradient-primary text-white text-[1.125rem] font-bold rounded-full min-w-[320px] transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/10 relative overflow-hidden group"
-          >
-            <span className="relative z-10">🚀 בדוק אם אתה מתאים לשותפות</span>
-            <svg className="w-[18px] h-[18px] relative z-10 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l-7 7 7 7"/>
-            </svg>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </Link>
-          
-          <div className="flex items-center gap-2 text-[0.8125rem] text-[#71717a] mt-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span><strong className="text-purple-600 text-[1.1em]">{viewerCount}</strong> אנשים צופים בדף עכשיו</span>
-          </div>
-          
-          <Link href="#tracks" className="text-[#a1a1aa] hover:text-[#fafafa] transition-colors text-[0.9375rem] font-medium">
-            ראה את שני המסלולים ↓
-          </Link>
-        </div>
-
-        {/* Trust line */}
-        <div id="heroTrust" className="flex items-center justify-center gap-8 mt-8 flex-wrap opacity-0">
-          {['בלי התחייבות', 'תשובה תוך 24 שעות', 'סודיות מלאה'].map((text, i) => (
-            <span key={i} className="flex items-center gap-2 text-sm text-[#71717a]">
-              <svg className="w-4 h-4 text-green-500" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              {text}
+          {/* Headline */}
+          <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[1.1] tracking-[-2px] mb-6 text-white">
+            <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
+              שותפות טכנולוגיה,
             </span>
-          ))}
+            <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
+              לא רק <span className="gradient-text">פיתוח</span>
+            </span>
+          </h1>
+
+          {/* Subtitle */}
+          <p id="heroSubtitle" className="text-lg text-[#a1a1aa] mb-8 leading-[1.7] opacity-0 translate-y-5">
+            סוכנות דיגיטלית מובילה המספקת תוצאות אמיתיות. אנחנו משלבים אסטרטגיה, יצירתיות וטכנולוגיה כדי להפוך את החזון שלך למציאות.
+          </p>
+
+          {/* CTA */}
+          <div id="heroActions" className="mb-10 opacity-0 translate-y-5">
+            <Link 
+              href="#contact" 
+              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group"
+            >
+              <span className="relative z-10">התחל פרויקט</span>
+              <svg className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l-7 7 7 7"/>
+              </svg>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </Link>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid grid-cols-3 gap-4 opacity-0 translate-y-5" id="heroFeatures">
+            <div className="glass-effect rounded-2xl p-6 text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-xl font-bold text-white mb-2">+10 שנים</div>
+              <div className="text-sm text-[#a1a1aa]">ניסיון עמוק בעסקים והצלחות</div>
+            </div>
+            
+            <div className="glass-effect rounded-2xl p-6 text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <div className="text-xl font-bold text-white mb-2">תוכנית בוטיק</div>
+              <div className="text-sm text-[#a1a1aa]">יחס אישי, לא תבניות</div>
+            </div>
+            
+            <div className="glass-effect rounded-2xl p-6 text-center">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </div>
+              <div className="text-xl font-bold text-white mb-2">תשלום חודשי</div>
+              <div className="text-sm text-[#a1a1aa]">התחלה קטנה, גדילה גדולה</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

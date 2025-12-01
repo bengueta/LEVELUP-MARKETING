@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import LogosSection from '@/components/LogosSection';
 import Problems from '@/components/Problems';
 import Tracks from '@/components/Tracks';
+import ProcessSection from '@/components/ProcessSection';
 import Testimonials from '@/components/Testimonials';
 import About from '@/components/About';
 import FAQ from '@/components/FAQ';
@@ -31,6 +32,7 @@ export default function Home() {
       <LogosSection />
       <Problems />
       <Tracks />
+      <ProcessSection />
       <Testimonials />
       <About />
       <FAQ />

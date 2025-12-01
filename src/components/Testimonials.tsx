@@ -24,17 +24,17 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="py-24 px-8 bg-[#121215] relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto">
+    <section id="testimonials" className="py-24 px-16 bg-[#121215] relative overflow-hidden">
+      <div className="max-w-[1600px] mx-auto">
         <header className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 text-xs font-extrabold text-purple-600 uppercase tracking-[2px] mb-4 px-4 py-2 border-2 border-purple-600/30 rounded-full">
-            לקוחות אמיתיים
+          <span className="inline-flex items-center gap-2 text-xs font-extrabold text-purple-600 uppercase tracking-[2px] mb-4 px-4 py-2 border border-purple-600/30 rounded-full bg-purple-600/10">
+            המלצות
           </span>
-          <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-black leading-[1.1] tracking-[-3px] mb-6 gradient-text">
-            הם כבר עובדים איתנו
+          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black leading-[1.1] tracking-[-2px] mb-4 text-white">
+            מה הלקוחות <span className="gradient-text">אומרים עלינו</span>
           </h2>
-          <p className="text-[1.1875rem] text-[#a1a1aa] max-w-[600px] mx-auto leading-[1.75]">
-            לא מילים שלנו – מילים של אנשים שעבדו איתנו והצליחו.
+          <p className="text-lg text-[#a1a1aa] max-w-[700px] mx-auto leading-[1.75]">
+            אל תאמינו לנו - תאמינו ללקוחות שלנו. הנה מה שיש להם להגיד על העבודה איתנו.
           </p>
         </header>
 

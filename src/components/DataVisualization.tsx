@@ -1,0 +1,109 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+
+const data = [
+  { month: 'ינואר', value: 120 },
+  { month: 'פברואר', value: 190 },
+  { month: 'מרץ', value: 300 },
+  { month: 'אפריל', value: 500 },
+  { month: 'מאי', value: 800 },
+  { month: 'יוני', value: 1200 },
+];
+
+export default function DataVisualization() {
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const animate = async () => {
+      const { gsap } = await import('gsap');
+      
+      if (chartRef.current) {
+        gsap.fromTo(chartRef.current, 
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: 'power3.out' }
+        );
+      }
+    };
+
+    animate();
+  }, []);
+
+  return (
+    <div ref={chartRef} className="glass-effect rounded-[24px] p-8 h-full flex flex-col">
+      {/* Window controls */}
+      <div className="flex gap-2 mb-6">
+        <div className="w-3 h-3 rounded-full bg-red-500/80" />
+        <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+        <div className="w-3 h-3 rounded-full bg-green-500/80" />
+      </div>
+
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h3 className="text-sm text-[#a1a1aa] mb-2">גדילה חודשית</h3>
+          <div className="flex items-center gap-2">
+            <span className="text-3xl font-black text-white">340%+</span>
+            <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-blue-500 rounded-sm flex items-center justify-center">
+              <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Chart */}
+      <div className="flex-1 min-h-[200px] w-full">
+        <ResponsiveContainer width="100%" height="100%" minHeight={200}>
+          <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#9333ea" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#9333ea" stopOpacity={0.1}/>
+              </linearGradient>
+            </defs>
+            <Area 
+              type="monotone" 
+              dataKey="value" 
+              stroke="#9333ea" 
+              strokeWidth={3}
+              fill="url(#colorGradient)"
+              dot={{ fill: '#9333ea', r: 4 }}
+              activeDot={{ r: 6 }}
+            />
+            <XAxis 
+              dataKey="month" 
+              tick={{ fill: '#71717a', fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis 
+              tick={{ fill: '#71717a', fontSize: 12 }}
+              axisLine={false}
+              tickLine={false}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Metrics */}
+      <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
+        <div>
+          <div className="text-xs text-[#71717a] mb-1">הכנסות</div>
+          <div className="text-xl font-bold text-white">2.4M</div>
+        </div>
+        <div>
+          <div className="text-xs text-[#71717a] mb-1">המרה</div>
+          <div className="text-xl font-bold text-green-400">85%</div>
+        </div>
+        <div>
+          <div className="text-xs text-[#71717a] mb-1">עלויות</div>
+          <div className="text-xl font-bold text-blue-400">12K</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
