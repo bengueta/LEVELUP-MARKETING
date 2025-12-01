@@ -49,7 +49,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center px-16 py-24 relative overflow-hidden">
+    <section className="min-h-screen flex items-center px-4 md:px-8 lg:px-16 py-12 md:py-24 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[160%] h-full bg-gradient-to-br from-purple-600/20 via-blue-600/15 to-green-500/10 blur-[100px] animate-pulse" />
@@ -57,14 +57,14 @@ export default function Hero() {
              style={{ maskImage: 'radial-gradient(ellipse at center, black 20%, transparent 70%)' }} />
       </div>
 
-      <div className="relative z-[2] w-full max-w-[1600px] mx-auto grid grid-cols-[1fr_1.2fr] gap-16 items-center">
+      <div className="relative z-[2] w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-center">
         {/* Left: Data Visualization */}
-        <div className="h-[600px]">
+        <div className="h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1">
           <DataVisualization />
         </div>
 
         {/* Right: Content */}
-        <div className="text-right">
+        <div className="text-right order-1 lg:order-2">
           {/* Trust Badge */}
           <div id="heroBadge" className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-600/30 rounded-full text-sm font-medium text-purple-300 mb-6 opacity-0 translate-y-5">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -101,7 +101,7 @@ export default function Hero() {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-3 gap-4 opacity-0 translate-y-5" id="heroFeatures">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 opacity-0 translate-y-5" id="heroFeatures">
             <div className="glass-effect rounded-2xl p-6 text-center">
               <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

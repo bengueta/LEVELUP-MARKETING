@@ -60,7 +60,7 @@ export default function Tracks() {
   ];
 
   return (
-    <section id="tracks" className="py-24 px-16 relative overflow-hidden">
+    <section id="tracks" className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         <header className="text-center mb-16">
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black leading-[1.1] tracking-[-2px] mb-4 text-white">
