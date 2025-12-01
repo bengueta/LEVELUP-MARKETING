@@ -142,7 +142,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div 
-          className="lg:hidden fixed top-[73px] left-0 right-0 bg-[rgba(9,9,11,0.98)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+          className="lg:hidden fixed top-[calc(48px+73px)] left-0 right-0 bg-[rgba(9,9,11,0.98)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
           style={{ zIndex: Z_INDEX.HEADER }}
         >
           <nav className="px-4 py-6">
