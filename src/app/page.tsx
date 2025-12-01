@@ -8,6 +8,7 @@ import Problems from '@/components/Problems';
 import Tracks from '@/components/Tracks';
 import ProcessSection from '@/components/ProcessSection';
 import Testimonials from '@/components/Testimonials';
+import TrustSection from '@/components/TrustSection';
 import About from '@/components/About';
 import FAQ from '@/components/FAQ';
 import Contact from '@/components/Contact';
@@ -16,6 +17,9 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Loader from '@/components/Loader';
 import UrgencyBar from '@/components/UrgencyBar';
 import A11yPanel from '@/components/A11yPanel';
+import ParticleBackground from '@/components/ParticleBackground';
+import SmartCTA from '@/components/SmartCTA';
+import AIChatWidget from '@/components/AIChatWidget';
 
 export default function Home() {
   useEffect(() => {
@@ -23,7 +27,8 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#09090b] text-[#fafafa] overflow-x-hidden">
+    <main className="min-h-screen bg-[#09090b] text-[#fafafa] overflow-x-hidden relative">
+      <ParticleBackground />
       <Loader />
       <UrgencyBar />
       <A11yPanel />
@@ -34,11 +39,14 @@ export default function Home() {
       <Tracks />
       <ProcessSection />
       <Testimonials />
+      <TrustSection />
       <About />
       <FAQ />
       <Contact />
       <Footer />
       <WhatsAppFloat />
+      <SmartCTA />
+      <AIChatWidget />
     </main>
   );
 }

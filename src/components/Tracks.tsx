@@ -1,6 +1,12 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
+import ROICalculator from './ROICalculator';
 
 export default function Tracks() {
+  const [showComparison, setShowComparison] = useState(false);
+  
   const tracks = [
     {
       type: 'established',
@@ -59,10 +65,65 @@ export default function Tracks() {
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black leading-[1.1] tracking-[-2px] mb-4 text-white">
             דרכים גמישות לגדול איתנו
           </h2>
-          <p className="text-lg text-[#a1a1aa] max-w-[600px] mx-auto leading-[1.75]">
+          <p className="text-lg text-[#a1a1aa] max-w-[600px] mx-auto leading-[1.75] mb-6">
             בחרו את המסלול שמתאים לשלב שלכם בעסק
           </p>
+          <button
+            onClick={() => setShowComparison(!showComparison)}
+            className="inline-flex items-center gap-2 px-6 py-3 glass-effect-2 rounded-full text-sm font-semibold text-white hover:scale-105 transition-all"
+          >
+            {showComparison ? 'הסתר השוואה' : 'השווה בין המסלולים'}
+            <svg className={`w-4 h-4 transition-transform ${showComparison ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </header>
+
+        {/* Comparison Table */}
+        {showComparison && (
+          <div className="mb-12 glass-effect-2 rounded-2xl p-8 overflow-x-auto">
+            <h3 className="text-xl font-bold text-white mb-6 text-center">השוואה בין המסלולים</h3>
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="text-right py-4 px-4 text-sm font-semibold text-[#a1a1aa]">תכונה</th>
+                  <th className="text-center py-4 px-4 text-sm font-semibold text-white">חברות מבוססות</th>
+                  <th className="text-center py-4 px-4 text-sm font-semibold text-purple-400">אנשי עסק</th>
+                  <th className="text-center py-4 px-4 text-sm font-semibold text-white">יזמים מתחילים</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { feature: 'תשלום מראש', established: 'כן', business: 'לא', startup: 'לא' },
+                  { feature: 'תשלום חודשי', established: 'לא', business: 'לא', startup: 'כן' },
+                  { feature: 'שותפות אחוז', established: 'לא', business: 'כן', startup: 'לא' },
+                  { feature: 'צוות ייעודי', established: 'כן', business: 'כן', startup: 'כן' },
+                  { feature: 'תמיכה 24/7', established: 'כן', business: 'כן', startup: 'כן' },
+                  { feature: 'שיווק ולוגיסטיקה', established: 'כן', business: 'כן', startup: 'לא' },
+                ].map((row, i) => (
+                  <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <td className="py-4 px-4 text-sm text-[#a1a1aa]">{row.feature}</td>
+                    <td className="py-4 px-4 text-center">
+                      <span className={`text-sm ${row.established === 'כן' ? 'text-green-400' : 'text-[#71717a]'}`}>
+                        {row.established === 'כן' ? '✓' : '✗'}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      <span className={`text-sm ${row.business === 'כן' ? 'text-green-400' : 'text-[#71717a]'}`}>
+                        {row.business === 'כן' ? '✓' : '✗'}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      <span className={`text-sm ${row.startup === 'כן' ? 'text-green-400' : 'text-[#71717a]'}`}>
+                        {row.startup === 'כן' ? '✓' : '✗'}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         <div className="grid grid-cols-3 gap-6 relative z-[1]">
           {tracks.map((track, i) => (
@@ -138,6 +199,9 @@ export default function Tracks() {
             </p>
           </div>
         </div>
+
+        {/* ROI Calculator */}
+        <ROICalculator />
       </div>
     </section>
   );

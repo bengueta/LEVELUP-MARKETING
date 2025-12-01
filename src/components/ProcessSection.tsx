@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import ThreeDCard from './ThreeDCard';
 
 const steps = [
   {
@@ -63,6 +64,8 @@ const steps = [
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
   useEffect(() => {
     const animate = async () => {
@@ -117,20 +120,61 @@ export default function ProcessSection() {
 
           <div className="grid grid-cols-5 gap-8 relative z-[1]">
             {steps.map((step, i) => (
-              <div key={i} className="text-center">
-                {/* Number */}
-                <div className="text-4xl font-black text-[#71717a] mb-4">{step.number}</div>
-                
-                {/* Icon */}
-                <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg`}>
-                  {step.icon}
+              <ThreeDCard key={i} intensity={10}>
+                <div 
+                  className={`text-center cursor-pointer transition-all duration-300 ${
+                    activeStep === i ? 'scale-105' : ''
+                  }`}
+                  onClick={() => setActiveStep(activeStep === i ? null : i)}
+                  onMouseEnter={() => setHoveredStep(i)}
+                  onMouseLeave={() => setHoveredStep(null)}
+                >
+                  {/* Number */}
+                  <div className={`text-4xl font-black mb-4 transition-colors ${
+                    activeStep === i || hoveredStep === i ? 'gradient-text' : 'text-[#71717a]'
+                  }`}>
+                    {step.number}
+                  </div>
+                  
+                  {/* Icon */}
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg transition-all duration-300 ${
+                    activeStep === i || hoveredStep === i ? 'scale-110 shadow-2xl' : ''
+                  }`}>
+                    {step.icon}
+                  </div>
+                  
+                  {/* Content */}
+                  <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
+                  <p className={`text-sm leading-relaxed transition-all duration-300 ${
+                    activeStep === i ? 'text-white' : 'text-[#a1a1aa]'
+                  }`}>
+                    {step.description}
+                  </p>
+
+                  {/* Expanded Details */}
+                  {activeStep === i && (
+                    <div className="mt-4 glass-effect-2 rounded-xl p-4 animate-fadeIn">
+                      <div className="text-xs text-[#71717a] mb-2">פרטים נוספים:</div>
+                      <ul className="text-sm text-[#a1a1aa] space-y-1 text-right">
+                        <li>• משך זמן: {i === 0 ? '1-2 שעות' : i === 1 ? '2-3 שבועות' : i === 2 ? '1-3 חודשים' : i === 3 ? '1-2 שבועות' : 'מתמשך'}</li>
+                        <li>• תדירות פגישות: {i === 0 ? 'פגישה אחת' : i === 1 ? 'פגישה שבועית' : i === 2 ? 'פגישה יומית' : i === 3 ? 'פגישה שבועית' : 'פגישה חודשית'}</li>
+                        <li>• תוצרים: {i === 0 ? 'הבנה מלאה של הצרכים' : i === 1 ? 'תוכנית עבודה מפורטת' : i === 2 ? 'מוצר פועל' : i === 3 ? 'מוצר מושק' : 'תמיכה שוטפת'}</li>
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                
-                {/* Content */}
-                <h3 className="text-lg font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed">{step.description}</p>
-              </div>
+              </ThreeDCard>
             ))}
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-2 glass-effect-2 rounded-full px-6 py-3">
+              <span className="text-sm text-[#a1a1aa]">אתה בשלב:</span>
+              <span className="text-base font-bold gradient-text">
+                {activeStep !== null ? steps[activeStep].title : 'בחר שלב לפרטים'}
+              </span>
+            </div>
           </div>
         </div>
       </div>

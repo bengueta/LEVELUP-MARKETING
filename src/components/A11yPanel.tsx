@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function A11yPanel() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +8,46 @@ export default function A11yPanel() {
   const [fontSize, setFontSize] = useState('normal');
   const [contrast, setContrast] = useState('normal');
   const [motion, setMotion] = useState('normal');
+
+  useEffect(() => {
+    // Apply accessibility settings
+    const root = document.documentElement;
+    
+    // Font size
+    root.style.setProperty('--font-size-multiplier', 
+      fontSize === 'large' ? '1.2' : fontSize === 'xlarge' ? '1.4' : '1'
+    );
+    
+    // Contrast
+    if (contrast === 'high') {
+      root.classList.add('high-contrast');
+    } else {
+      root.classList.remove('high-contrast');
+    }
+    
+    // Reduced motion
+    if (motion === 'reduced') {
+      root.classList.add('reduced-motion');
+    } else {
+      root.classList.remove('reduced-motion');
+    }
+  }, [fontSize, contrast, motion]);
+
+  useEffect(() => {
+    // Keyboard navigation
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+      if (e.key === 'a' && e.ctrlKey) {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
 
   return (
     <>
@@ -42,21 +82,100 @@ export default function A11yPanel() {
               </button>
             </div>
 
-            <div className="mb-6">
-              <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">מצב תצוגה</h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setTheme('dark')}
-                  className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${theme === 'dark' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
-                >
-                  🌙 לילה
-                </button>
-                <button
-                  onClick={() => setTheme('light')}
-                  className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${theme === 'light' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
-                >
-                  ☀️ יום
-                </button>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">מצב תצוגה</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setTheme('dark')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${theme === 'dark' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    aria-pressed={theme === 'dark'}
+                  >
+                    🌙 לילה
+                  </button>
+                  <button
+                    onClick={() => setTheme('light')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${theme === 'light' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'}`}
+                    aria-pressed={theme === 'light'}
+                  >
+                    ☀️ יום
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">גודל טקסט</h3>
+                <div className="flex gap-2">
+                  {['normal', 'large', 'xlarge'].map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setFontSize(size)}
+                      className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                        fontSize === size ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'
+                      }`}
+                      aria-pressed={fontSize === size}
+                    >
+                      {size === 'normal' ? 'רגיל' : size === 'large' ? 'גדול' : 'גדול מאוד'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">ניגודיות</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setContrast('normal')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                      contrast === 'normal' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'
+                    }`}
+                    aria-pressed={contrast === 'normal'}
+                  >
+                    רגיל
+                  </button>
+                  <button
+                    onClick={() => setContrast('high')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                      contrast === 'high' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'
+                    }`}
+                    aria-pressed={contrast === 'high'}
+                  >
+                    גבוה
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-3">אנימציות</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setMotion('normal')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                      motion === 'normal' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'
+                    }`}
+                    aria-pressed={motion === 'normal'}
+                  >
+                    רגיל
+                  </button>
+                  <button
+                    onClick={() => setMotion('reduced')}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                      motion === 'reduced' ? 'border-purple-600 bg-purple-600/10' : 'border-transparent bg-[#1a1a1e]'
+                    }`}
+                    aria-pressed={motion === 'reduced'}
+                  >
+                    מופחת
+                  </button>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs text-[#71717a] mb-2">קיצורי מקלדת:</p>
+                <ul className="text-xs text-[#a1a1aa] space-y-1">
+                  <li>Ctrl+A - פתח נגישות</li>
+                  <li>Esc - סגור</li>
+                  <li>Tab - ניווט</li>
+                </ul>
               </div>
             </div>
           </aside>

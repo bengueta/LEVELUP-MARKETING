@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from 'recharts';
 
 const data = [
   { month: 'ינואר', value: 120 },
@@ -64,14 +64,27 @@ export default function DataVisualization() {
                 <stop offset="95%" stopColor="#9333ea" stopOpacity={0.1}/>
               </linearGradient>
             </defs>
+            <Tooltip 
+              contentStyle={{
+                backgroundColor: 'rgba(24, 24, 27, 0.95)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '12px',
+                padding: '12px',
+                backdropFilter: 'blur(20px)',
+              }}
+              labelStyle={{ color: '#fafafa', marginBottom: '8px' }}
+              itemStyle={{ color: '#9333ea' }}
+              cursor={{ stroke: '#9333ea', strokeWidth: 2 }}
+            />
             <Area 
               type="monotone" 
               dataKey="value" 
               stroke="#9333ea" 
               strokeWidth={3}
               fill="url(#colorGradient)"
-              dot={{ fill: '#9333ea', r: 4 }}
-              activeDot={{ r: 6 }}
+              dot={{ fill: '#9333ea', r: 4, strokeWidth: 2, stroke: '#09090b' }}
+              activeDot={{ r: 8, fill: '#c084fc', stroke: '#9333ea', strokeWidth: 2 }}
+              animationDuration={1500}
             />
             <XAxis 
               dataKey="month" 

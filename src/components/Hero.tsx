@@ -69,12 +69,12 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[1.1] tracking-[-2px] mb-6 text-white">
+          <h1 className="text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[1.1] tracking-[-2px] mb-6">
             <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
-              שותפות טכנולוגיה,
+              <span className="gradient-text-animated">שותפות טכנולוגיה,</span>
             </span>
             <span className="hero-title-word block overflow-hidden opacity-0 translate-y-full">
-              לא רק <span className="gradient-text">פיתוח</span>
+              לא רק <span className="gradient-text-animated">פיתוח</span>
             </span>
           </h1>
 
@@ -87,7 +87,7 @@ export default function Hero() {
           <div id="heroActions" className="mb-10 opacity-0 translate-y-5">
             <Link 
               href="#contact" 
-              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group"
+              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group ripple-effect"
             >
               <span className="relative z-10">התחל פרויקט</span>
               <svg className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
