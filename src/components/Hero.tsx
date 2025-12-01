@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import DataVisualization from './DataVisualization';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
@@ -87,16 +88,16 @@ export default function Hero() {
 
           {/* CTA */}
           <div id="heroActions" className="mb-10 opacity-0 translate-y-5">
-            <Link 
-              href="#contact" 
-              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group ripple-effect"
+            <button
+              onClick={() => smoothScrollToGSAP('contact', 100)}
+              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group ripple-effect focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               <span className="relative z-10">התחל פרויקט</span>
               <svg className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l-7 7 7 7"/>
               </svg>
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Link>
+            </button>
           </div>
 
           {/* Feature Cards */}

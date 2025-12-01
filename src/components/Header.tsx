@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,24 +24,66 @@ export default function Header() {
       }`}
     >
       {/* Left: CTA Button */}
-      <Link 
-        href="#contact" 
-        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:scale-105"
+      <button
+        onClick={() => smoothScrollToGSAP('contact', 100)}
+        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
       >
         התחל פרויקט
-      </Link>
+      </button>
       
       {/* Center: Navigation */}
       <nav className="flex items-center gap-8">
         <ul className="flex items-center gap-8 list-none">
-          <li><Link href="#" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">בית</Link></li>
-          <li><Link href="#tracks" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">שירותים</Link></li>
-          <li><Link href="#process" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">תהליך</Link></li>
-          <li><Link href="#testimonials" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">המלצות</Link></li>
-          <li><Link href="#about" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">צוות</Link></li>
+          <li>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              בית
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => smoothScrollToGSAP('tracks', 100)}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              שירותים
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => smoothScrollToGSAP('process', 100)}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              תהליך
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => smoothScrollToGSAP('testimonials', 100)}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              המלצות
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => smoothScrollToGSAP('about', 100)}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              צוות
+            </button>
+          </li>
           <li><Link href="#" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">בלוג</Link></li>
           <li><Link href="#" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">ספריית דמוים</Link></li>
-          <li><Link href="#contact" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">יצירת קשר</Link></li>
+          <li>
+            <button
+              onClick={() => smoothScrollToGSAP('contact', 100)}
+              className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+            >
+              יצירת קשר
+            </button>
+          </li>
         </ul>
         
         {/* Icons */}

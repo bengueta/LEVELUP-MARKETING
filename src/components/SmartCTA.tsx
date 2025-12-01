@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 interface SmartCTAProps {
   section?: string;
@@ -53,12 +54,12 @@ export default function SmartCTA({ section }: SmartCTAProps) {
     <>
       {/* Floating CTA Button - Only show when sticky bar is hidden */}
       {isVisible && (
-        <Link
-          href="#contact"
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[96] px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn"
+        <button
+          onClick={() => smoothScrollToGSAP('contact', 100)}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[96] px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
           {getCTAText()}
-        </Link>
+        </button>
       )}
 
       {/* Sticky CTA Bar */}
@@ -67,12 +68,12 @@ export default function SmartCTA({ section }: SmartCTAProps) {
           <div className="text-sm text-[#a1a1aa]">
             <span className="text-white font-semibold">מוכן להתחיל?</span> בואו נדבר על הפרויקט שלך
           </div>
-          <Link
-            href="#contact"
-            className="px-6 py-3 gradient-primary text-white text-sm font-bold rounded-full transition-all hover:scale-105"
+          <button
+            onClick={() => smoothScrollToGSAP('contact', 100)}
+            className="px-6 py-3 gradient-primary text-white text-sm font-bold rounded-full transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             התחל עכשיו
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -95,13 +96,15 @@ export default function SmartCTA({ section }: SmartCTAProps) {
             <p className="text-[#a1a1aa] mb-6">
               יש לך שאלות? בואו נדבר. אנחנו כאן כדי לעזור.
             </p>
-            <Link
-              href="#contact"
-              onClick={() => setShowExitIntent(false)}
-              className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-white font-bold rounded-full transition-all hover:scale-105 w-full justify-center"
+            <button
+              onClick={() => {
+                setShowExitIntent(false);
+                smoothScrollToGSAP('contact', 100);
+              }}
+              className="inline-flex items-center gap-2 px-6 py-3 gradient-primary text-white font-bold rounded-full transition-all hover:scale-105 w-full justify-center focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               בואו נדבר
-            </Link>
+            </button>
           </div>
         </div>
       )}

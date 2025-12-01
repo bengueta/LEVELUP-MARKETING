@@ -18,6 +18,11 @@
   --accent-green: #10b981;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
 body {
   background: #09090b;
   color: #fafafa;
@@ -25,6 +30,26 @@ body {
   direction: rtl;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  /* Prevent layout shift */
+  min-height: 100vh;
+  /* Breathing space - יותר נושם */
+  line-height: 1.7;
+}
+
+/* Spacing improvements - יותר נושם */
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
 }
 
 .font-hebrew {
@@ -47,10 +72,17 @@ body {
 }
 
 .glass-effect {
-  background: rgba(24, 24, 27, 0.7);
+  background: rgba(24, 24, 27, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* יותר נושם - פחות כבד */
+  transition: all 0.3s ease;
+}
+
+.glass-effect:hover {
+  background: rgba(24, 24, 27, 0.75);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .glow-purple {
@@ -91,14 +123,24 @@ body {
 
 /* Glass Morphism 2.0 - Multiple Layers */
 .glass-effect-2 {
-  background: rgba(24, 24, 27, 0.6);
+  background: rgba(24, 24, 27, 0.5);
   backdrop-filter: blur(30px) saturate(180%);
   -webkit-backdrop-filter: blur(30px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.37),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
   position: relative;
+  /* יותר נושם - מעבר חלק */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-effect-2:hover {
+  background: rgba(24, 24, 27, 0.65);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 }
 
 .glass-effect-2::before {
@@ -236,6 +278,33 @@ body {
   scroll-behavior: auto !important;
 }
 
+/* Smooth transitions - יותר נעים */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Better spacing - יותר נושם */
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
 /* Focus Indicators */
 *:focus-visible {
   outline: 2px solid #9333ea;
@@ -277,7 +346,23 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-flow-text 3s ease infinite;
+  animation: gradient-flow-text 4s ease-in-out infinite;
+}
+
+/* Breathing animations - יותר חי */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 3s ease-in-out infinite;
 }
 
 @keyframes gradient-flow-text {

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import ROICalculator from './ROICalculator';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Tracks() {
   const [showComparison, setShowComparison] = useState(false);
@@ -167,15 +168,15 @@ export default function Tracks() {
                   ))}
                 </ul>
 
-                <Link
-                  href="#contact"
-                  className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full text-sm font-bold transition-all hover:-translate-y-1 ${track.ctaStyle}`}
+                <button
+                  onClick={() => smoothScrollToGSAP('contact', 100)}
+                  className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full text-sm font-bold transition-all hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 ${track.ctaStyle}`}
                 >
                   {track.cta}
                   <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M5 12h14M12 5l-7 7 7 7"/>
                   </svg>
-                </Link>
+                </button>
               </div>
             </article>
           ))}

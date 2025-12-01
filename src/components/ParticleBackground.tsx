@@ -23,10 +23,15 @@ export default function ParticleBackground() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  if (!init) return null;
+  if (!init) {
+    // Show placeholder to prevent layout shift
+    return (
+      <div className="fixed inset-0 pointer-events-none z-0 bg-[#09090b]" />
+    );
+  }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
+    <div className="fixed inset-0 pointer-events-none z-0 bg-[#09090b]">
       <Particles
         id="tsparticles"
         options={{
@@ -35,7 +40,7 @@ export default function ParticleBackground() {
               value: 'transparent',
             },
           },
-          fpsLimit: 120,
+          fpsLimit: 60,
           interactivity: {
             events: {
               onClick: {
@@ -78,14 +83,14 @@ export default function ParticleBackground() {
                 default: 'bounce',
               },
               random: false,
-              speed: 0.5,
+              speed: 0.3,
               straight: false,
             },
             number: {
-              value: 50,
+              value: 30,
             },
             opacity: {
-              value: 0.3,
+              value: 0.2,
             },
             shape: {
               type: 'circle',
