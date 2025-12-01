@@ -3,11 +3,9 @@
 import { lazy, Suspense } from 'react';
 import Header from '@/components/layout/Header';
 import Loader from '@/components/Loader';
-import UrgencyBar from '@/components/widgets/UrgencyBar';
 import A11yPanel from '@/components/widgets/A11yPanel';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import WhatsAppFloat from '@/components/widgets/WhatsAppFloat';
-import SmartCTA from '@/components/widgets/SmartCTA';
 import AIChatWidget from '@/components/widgets/AIChatWidget';
 import Footer from '@/components/layout/Footer';
 
