@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import ThreeDCard from '../ui/ThreeDCard';
 
 const caseStudies = [
   {
@@ -80,43 +79,62 @@ export default function TrustSection() {
         {/* Case Studies */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {caseStudies.map((study, i) => (
-            <ThreeDCard key={i} className="trust-item">
-              <div className="glass-effect-2 rounded-2xl p-8 h-full">
-                <h3 className="text-xl font-bold text-white mb-6">{study.title}</h3>
+            <article 
+              key={i} 
+              className="trust-item group relative"
+            >
+              <div className="glass-effect-2 rounded-2xl p-8 h-full relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(147,51,234,0.3)] hover:border-purple-500/40">
+                {/* Depth layers - עיצוב זכוכית עמוק */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-purple-500/10 group-hover:via-purple-500/5 group-hover:to-blue-500/10 transition-all duration-500 pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="space-y-4">
-                  <div>
-                    <div className="text-xs text-[#71717a] mb-2">לפני</div>
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <div className="text-sm text-[#a1a1aa]">הכנסות</div>
-                        <div className="text-lg font-bold text-white">{study.before.revenue}</div>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold text-white mb-6">{study.title}</h3>
+                  
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-xs text-[#71717a] mb-2">לפני</div>
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <div className="text-sm text-[#a1a1aa]">הכנסות</div>
+                          <div className="text-lg font-bold text-white">{study.before.revenue}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-[#a1a1aa]">המרה</div>
+                          <div className="text-lg font-bold text-white">{study.before.conversion}</div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm text-[#a1a1aa]">המרה</div>
-                        <div className="text-lg font-bold text-white">{study.before.conversion}</div>
+                    </div>
+
+                    <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+                    <div>
+                      <div className="text-xs text-[#71717a] mb-2">אחרי ({study.period})</div>
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <div className="text-sm text-[#a1a1aa]">הכנסות</div>
+                          <div className="text-lg font-bold text-green-400">{study.after.revenue}</div>
+                        </div>
+                        <div>
+                          <div className="text-sm text-[#a1a1aa]">המרה</div>
+                          <div className="text-lg font-bold text-green-400">{study.after.conversion}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  <div className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-                  <div>
-                    <div className="text-xs text-[#71717a] mb-2">אחרי ({study.period})</div>
-                    <div className="flex items-center gap-4">
-                      <div>
-                        <div className="text-sm text-[#a1a1aa]">הכנסות</div>
-                        <div className="text-lg font-bold text-green-400">{study.after.revenue}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm text-[#a1a1aa]">המרה</div>
-                        <div className="text-lg font-bold text-green-400">{study.after.conversion}</div>
-                      </div>
-                    </div>
-                  </div>
+                  
+                  {/* לחצן לצפייה בממשקים */}
+                  <button className="mt-6 w-full px-4 py-3 glass-effect rounded-xl text-sm font-semibold text-white hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                    <span>צפה בממשקים</span>
+                    <svg className="w-4 h-4 transition-transform group-hover/btn:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
-            </ThreeDCard>
+            </article>
           ))}
         </div>
 

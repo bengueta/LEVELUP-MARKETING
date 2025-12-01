@@ -10,8 +10,8 @@ export const Z_INDEX = {
   SMART_CTA_FLOATING: 89,
   WIDGETS: 90, // WhatsAppFloat, AIChatWidget
   A11Y_PANEL: 99,
+  URGENCY_BAR: 100, // חלק מה-Header
   HEADER: 100,
-  URGENCY_BAR: 101,
   EXIT_INTENT: 200, // מופיע מעל Header
   MODALS: 200,
   LOADER: 10000,

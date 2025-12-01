@@ -37,7 +37,6 @@ export default function Home() {
     <main className="min-h-screen bg-[#09090b] text-[#fafafa] relative">
       <AnimatedBackground />
       <Loader />
-      <UrgencyBar />
       <A11yPanel />
       <Header />
       
