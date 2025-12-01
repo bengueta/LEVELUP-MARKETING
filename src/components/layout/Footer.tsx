@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 import { Z_INDEX } from '@/lib/zIndex';
+import SmartCTA from '@/components/widgets/SmartCTA';
 
 export default function Footer() {
   return (
@@ -100,6 +101,9 @@ export default function Footer() {
           <p className="text-xs md:text-[0.8125rem] text-[#71717a] text-center sm:text-right">© 2024 CoreSide. כל הזכויות שמורות.</p>
         </div>
       </div>
+      
+      {/* SmartCTA Bar - חלק מהפוטר */}
+      <SmartCTA />
     </footer>
   );
 }

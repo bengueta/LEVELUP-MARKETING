@@ -62,28 +62,11 @@ export default function SmartCTA({ section }: SmartCTAProps) {
     return () => document.removeEventListener('mouseleave', handleMouseLeave);
   }, [showExitIntent]);
 
-  // Floating button should only show when sticky bar is NOT visible
-  const showFloating = isVisible && isDesktop; // Only on desktop
-
   return (
     <>
-      {/* Floating CTA Button - Only show when sticky bar is hidden on desktop */}
-      {showFloating && (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            smoothScrollToGSAP('contact', 100);
-          }}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn focus:outline-none focus:ring-2 focus:ring-purple-500 will-change-transform"
-          style={{ zIndex: Z_INDEX.SMART_CTA_FLOATING }}
-        >
-          {getCTAText()}
-        </button>
-      )}
-
-      {/* Sticky CTA Bar - Show on mobile, hide on desktop when floating is visible */}
+      {/* Sticky CTA Bar - חלק מהפוטר */}
       <div 
-        className={`fixed bottom-0 left-0 right-0 glass-effect-2 border-t border-white/10 transition-transform duration-300 ${!isVisible ? 'translate-y-full' : showFloating ? 'translate-y-full' : 'translate-y-0'}`}
+        className="glass-effect-2 border-t border-white/10"
         style={{ zIndex: Z_INDEX.SMART_CTA_STICKY }}
       >
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 lg:px-16 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">

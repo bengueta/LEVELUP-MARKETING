@@ -97,10 +97,10 @@ export default function AIChatWidget() {
         )}
       </button>
 
-      {/* Chat Window - יציב וממוקד */}
+      {/* Chat Window - דבוק למסך */}
       {isOpen && (
         <div 
-          className="fixed bottom-28 right-6 w-full sm:w-96 h-[500px] max-h-[calc(100vh-10rem)] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden" 
+          className="fixed bottom-24 right-6 w-full sm:w-96 h-[500px] max-h-[calc(100vh-8rem)] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden" 
           style={{ zIndex: Z_INDEX.WIDGETS }}
           role="dialog" 
           aria-modal="true" 

@@ -51,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 md:px-8 relative overflow-hidden">
+    <section id="contact" className="py-24 px-4 md:px-8 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[30%] -right-[10%] w-[600px] h-[600px] bg-gradient-to-br from-purple-600/15 to-transparent blur-[100px]" />
         <div className="absolute bottom-[20%] -left-[10%] w-[500px] h-[500px] bg-gradient-to-br from-blue-600/10 to-transparent blur-[100px]" />

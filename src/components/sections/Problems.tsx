@@ -35,7 +35,7 @@ export default function Problems() {
   ];
 
   return (
-    <section id="problems" className="py-24 px-4 md:px-8 bg-[#121215] relative overflow-hidden">
+    <section id="problems" className="py-24 px-4 md:px-8 bg-[#121215] relative">
       <div className="max-w-[1200px] mx-auto">
         <div className="max-w-[800px] mx-auto mb-16 text-center">
           <p className="text-[clamp(1.625rem,3.5vw,2.75rem)] font-bold leading-[1.35] text-[#a1a1aa]">

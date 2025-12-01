@@ -98,7 +98,7 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="process" className="py-24 px-4 md:px-8 lg:px-16 relative overflow-hidden">
+    <section ref={sectionRef} id="process" className="py-24 px-4 md:px-8 lg:px-16 relative">
       <div className="max-w-[1600px] mx-auto">
         <header className="text-center mb-16">
           <span className="inline-flex items-center gap-2 text-xs font-extrabold text-purple-600 uppercase tracking-[2px] mb-4 px-4 py-2 border border-purple-600/30 rounded-full bg-purple-600/10">

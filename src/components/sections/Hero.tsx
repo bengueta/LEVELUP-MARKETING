@@ -68,7 +68,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center px-4 md:px-8 lg:px-16 py-12 md:py-24 relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center px-4 md:px-8 lg:px-16 py-12 md:py-24 relative">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[160%] h-full bg-gradient-to-br from-purple-600/20 via-blue-600/15 to-green-500/10 blur-[100px] animate-pulse" />

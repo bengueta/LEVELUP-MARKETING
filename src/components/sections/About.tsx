@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section id="about" className="py-24 px-4 md:px-8 relative overflow-hidden">
+    <section id="about" className="py-24 px-4 md:px-8 relative">
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[380px_1fr] gap-20 items-center relative z-[1]">
           <div className="relative">

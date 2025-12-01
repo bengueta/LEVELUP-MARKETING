@@ -83,7 +83,6 @@ export default function Home() {
       
       <Footer />
       <WhatsAppFloat />
-      <SmartCTA />
       <AIChatWidget />
     </main>
   );
