@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 
 const data = [
@@ -14,6 +14,8 @@ const data = [
 
 export default function DataVisualization() {
   const chartRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     const animate = async () => {
@@ -28,6 +30,22 @@ export default function DataVisualization() {
     };
 
     animate();
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const resizeObserver = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          setDimensions({ width, height });
+        }
+      }
+    });
+    
+    resizeObserver.observe(containerRef.current);
+    return () => resizeObserver.disconnect();
   }, []);
 
   return (
@@ -55,8 +73,18 @@ export default function DataVisualization() {
       </div>
 
       {/* Chart */}
-      <div className="flex-1 min-h-[200px] w-full" style={{ minWidth: '200px', width: '100%' }}>
-        <ResponsiveContainer width="100%" height="100%" minHeight={200}>
+      <div 
+        ref={containerRef}
+        className="flex-1 min-h-[200px] w-full" 
+        style={{ 
+          minWidth: '200px', 
+          width: '100%',
+          minHeight: '200px',
+          aspectRatio: '16/9'
+        }}
+      >
+        {dimensions.width > 0 && dimensions.height > 0 && (
+          <ResponsiveContainer width="100%" height="100%" minHeight={200} minWidth={200}>
           <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
@@ -97,8 +125,9 @@ export default function DataVisualization() {
               axisLine={false}
               tickLine={false}
             />
-          </AreaChart>
-        </ResponsiveContainer>
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
       </div>
 
       {/* Metrics */}

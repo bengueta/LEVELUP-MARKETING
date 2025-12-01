@@ -11,8 +11,9 @@ export const Z_INDEX = {
   A11Y_PANEL: 99,
   HEADER: 100,
   FOOTER: 100,
-  EXIT_INTENT: 100,
   URGENCY_BAR: 101,
+  EXIT_INTENT: 200, // מופיע מעל Header
+  MODALS: 200,
   LOADER: 10000,
 } as const;
 

@@ -7,6 +7,8 @@ import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
+  const [chartReady, setChartReady] = useState(false);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const animate = async () => {
@@ -49,7 +51,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center px-4 md:px-8 lg:px-16 py-12 md:py-24 relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center px-4 md:px-8 lg:px-16 py-12 md:py-24 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[160%] h-full bg-gradient-to-br from-purple-600/20 via-blue-600/15 to-green-500/10 blur-[100px] animate-pulse" />
@@ -59,8 +61,11 @@ export default function Hero() {
 
       <div className="relative z-[2] w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-center">
         {/* Left: Data Visualization */}
-        <div className="h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1 min-w-0 w-full">
-          <DataVisualization />
+        <div 
+          ref={chartContainerRef}
+          className="h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1 min-w-0 w-full"
+        >
+          {chartReady && <DataVisualization />}
         </div>
 
         {/* Right: Content */}
