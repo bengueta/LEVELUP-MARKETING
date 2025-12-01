@@ -25,7 +25,7 @@ export default function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-24 px-8 bg-[#121215] relative overflow-hidden">
+    <section id="faq" className="py-24 px-4 md:px-8 bg-[#121215] relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto">
         <header className="text-center mb-16">
           <span className="inline-flex items-center gap-2 text-xs font-extrabold text-purple-600 uppercase tracking-[2px] mb-4 px-4 py-2 border-2 border-purple-600/30 rounded-full">

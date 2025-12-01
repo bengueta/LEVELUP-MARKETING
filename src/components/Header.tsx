@@ -15,7 +15,10 @@ export default function Header() {
     >
       {/* Left: CTA Button */}
       <button
-        onClick={() => smoothScrollToGSAP('contact', 100)}
+        onClick={(e) => {
+          e.preventDefault();
+          smoothScrollToGSAP('contact', 100);
+        }}
         className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs md:text-sm font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
       >
         <span className="hidden sm:inline">התחל פרויקט</span>
@@ -35,7 +38,10 @@ export default function Header() {
           </li>
           <li>
             <button
-              onClick={() => smoothScrollToGSAP('tracks', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('tracks', 100);
+              }}
               className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
             >
               שירותים
@@ -43,7 +49,10 @@ export default function Header() {
           </li>
           <li>
             <button
-              onClick={() => smoothScrollToGSAP('process', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('process', 100);
+              }}
               className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
             >
               תהליך
@@ -51,7 +60,10 @@ export default function Header() {
           </li>
           <li>
             <button
-              onClick={() => smoothScrollToGSAP('testimonials', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('testimonials', 100);
+              }}
               className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
             >
               המלצות
@@ -59,7 +71,10 @@ export default function Header() {
           </li>
           <li>
             <button
-              onClick={() => smoothScrollToGSAP('about', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('about', 100);
+              }}
               className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
             >
               צוות
@@ -69,7 +84,10 @@ export default function Header() {
           <li><Link href="#" className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors">ספריית דמוים</Link></li>
           <li>
             <button
-              onClick={() => smoothScrollToGSAP('contact', 100)}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollToGSAP('contact', 100);
+              }}
               className="text-sm font-medium text-[#a1a1aa] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
             >
               יצירת קשר
@@ -136,7 +154,8 @@ export default function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     smoothScrollToGSAP('tracks', 100);
                     setIsMobileMenuOpen(false);
                   }}
@@ -147,7 +166,8 @@ export default function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     smoothScrollToGSAP('process', 100);
                     setIsMobileMenuOpen(false);
                   }}
@@ -158,7 +178,8 @@ export default function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     smoothScrollToGSAP('testimonials', 100);
                     setIsMobileMenuOpen(false);
                   }}
@@ -169,7 +190,8 @@ export default function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     smoothScrollToGSAP('about', 100);
                     setIsMobileMenuOpen(false);
                   }}
@@ -180,7 +202,8 @@ export default function Header() {
               </li>
               <li>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     smoothScrollToGSAP('contact', 100);
                     setIsMobileMenuOpen(false);
                   }}

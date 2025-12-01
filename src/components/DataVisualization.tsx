@@ -31,7 +31,7 @@ export default function DataVisualization() {
   }, []);
 
   return (
-    <div ref={chartRef} className="glass-effect rounded-[24px] p-8 h-full flex flex-col">
+    <div ref={chartRef} className="glass-effect rounded-[24px] p-4 md:p-6 lg:p-8 h-full flex flex-col min-w-0">
       {/* Window controls */}
       <div className="flex gap-2 mb-6">
         <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -55,8 +55,8 @@ export default function DataVisualization() {
       </div>
 
       {/* Chart */}
-      <div className="flex-1 min-h-[200px] w-full min-w-0" style={{ minWidth: 0 }}>
-        <ResponsiveContainer width="100%" height="100%" minHeight={200} minWidth={0}>
+      <div className="flex-1 min-h-[200px] w-full" style={{ minWidth: '200px' }}>
+        <ResponsiveContainer width="100%" height="100%" minHeight={200}>
           <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">

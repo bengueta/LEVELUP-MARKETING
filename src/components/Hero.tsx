@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import DataVisualization from './DataVisualization';
+import DataVisualization from '../DataVisualization';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Hero() {
@@ -59,7 +59,7 @@ export default function Hero() {
 
       <div className="relative z-[2] w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-16 items-center">
         {/* Left: Data Visualization */}
-        <div className="h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1">
+        <div className="h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1 min-w-0">
           <DataVisualization />
         </div>
 

@@ -36,19 +36,25 @@ export default function Footer() {
           <nav>
             <h4 className="text-xs font-bold text-[#71717a] uppercase tracking-wider mb-5">ניווט</h4>
             <ul className="list-none space-y-3">
-              {['הבעיה', 'המסלולים', 'לקוחות', 'מי אנחנו', 'צור קשר'].map((link, i) => {
-                const sectionId = ['problems', 'tracks', 'testimonials', 'about', 'contact'][i];
-                return (
-                  <li key={i}>
-                    <button
-                      onClick={() => smoothScrollToGSAP(sectionId, 100)}
-                      className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
-                    >
-                      {link}
-                    </button>
-                  </li>
-                );
-              })}
+              {[
+                { label: 'הבעיה', id: 'problems' },
+                { label: 'המסלולים', id: 'tracks' },
+                { label: 'לקוחות', id: 'testimonials' },
+                { label: 'מי אנחנו', id: 'about' },
+                { label: 'צור קשר', id: 'contact' }
+              ].map((item, i) => (
+                <li key={i}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScrollToGSAP(item.id, 100);
+                    }}
+                    className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded w-full text-right"
+                  >
+                    {item.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </nav>
 
@@ -57,16 +63,22 @@ export default function Footer() {
             <ul className="list-none space-y-3">
               <li>
                 <button
-                  onClick={() => smoothScrollToGSAP('tracks', 100)}
-                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToGSAP('tracks', 100);
+                  }}
+                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded w-full text-right"
                 >
                   סטארטאפים
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => smoothScrollToGSAP('tracks', 100)}
-                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    smoothScrollToGSAP('tracks', 100);
+                  }}
+                  className="text-[0.9375rem] text-[#a1a1aa] hover:text-[#fafafa] transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 rounded w-full text-right"
                 >
                   בעלי עסקים
                 </button>

@@ -20,22 +20,35 @@ export const smoothScrollTo = (elementId: string, offset: number = 0) => {
  */
 export const smoothScrollToGSAP = async (elementId: string, offset: number = 80) => {
   try {
-    const { gsap } = await import('gsap');
-    const { ScrollToPlugin } = await import('gsap/ScrollToPlugin');
-    
-    gsap.registerPlugin(ScrollToPlugin);
+    // Wait for DOM to be ready
+    if (typeof window === 'undefined') return;
     
     const element = document.getElementById(elementId);
-    if (!element) return;
+    if (!element) {
+      // Fallback ל-smooth scroll רגיל
+      smoothScrollTo(elementId, offset);
+      return;
+    }
 
-    gsap.to(window, {
-      duration: 1.2,
-      scrollTo: {
-        y: element,
-        offsetY: offset,
-      },
-      ease: 'power2.inOut',
-    });
+    // Try GSAP first
+    try {
+      const { gsap } = await import('gsap');
+      const { ScrollToPlugin } = await import('gsap/ScrollToPlugin');
+      
+      gsap.registerPlugin(ScrollToPlugin);
+      
+      gsap.to(window, {
+        duration: 1.2,
+        scrollTo: {
+          y: element,
+          offsetY: offset,
+        },
+        ease: 'power2.inOut',
+      });
+    } catch (gsapError) {
+      // Fallback ל-smooth scroll רגיל אם GSAP לא זמין
+      smoothScrollTo(elementId, offset);
+    }
   } catch (error) {
     // Fallback ל-smooth scroll רגיל
     smoothScrollTo(elementId, offset);
