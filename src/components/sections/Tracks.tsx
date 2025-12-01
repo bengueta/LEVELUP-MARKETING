@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import ROICalculator from './ROICalculator';
+import ROICalculator from '../ROICalculator';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Tracks() {

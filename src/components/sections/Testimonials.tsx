@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import ThreeDCard from './ThreeDCard';
+import ThreeDCard from '../ui/ThreeDCard';
 
 const categories = ['הכל', 'שותפות אחוז', 'תשלום חודשי', 'חברות מבוססות'];
 

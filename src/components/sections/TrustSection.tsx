@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import ThreeDCard from './ThreeDCard';
+import ThreeDCard from '../ui/ThreeDCard';
 
 const caseStudies = [
   {
