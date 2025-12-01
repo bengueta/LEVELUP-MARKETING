@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import DataVisualization from '../DataVisualization';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
@@ -48,6 +48,23 @@ export default function Hero() {
     return () => {
       clearInterval(interval);
     };
+  }, []);
+
+  useEffect(() => {
+    if (!chartContainerRef.current) return;
+    
+    const checkDimensions = () => {
+      const { width, height } = chartContainerRef.current!.getBoundingClientRect();
+      if (width > 0 && height > 0) {
+        setChartReady(true);
+      }
+    };
+    
+    checkDimensions();
+    const resizeObserver = new ResizeObserver(checkDimensions);
+    resizeObserver.observe(chartContainerRef.current);
+    
+    return () => resizeObserver.disconnect();
   }, []);
 
   return (
