@@ -11,14 +11,14 @@ export default function Header() {
 
   return (
     <header 
-      className="fixed top-0 left-0 right-0 transition-all duration-300 bg-[rgba(9,9,11,0.95)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+      className="fixed top-0 left-0 right-0 transition-all duration-300"
       style={{ zIndex: Z_INDEX.HEADER }}
     >
       {/* UrgencyBar - חלק מה-Header */}
       <UrgencyBar />
       
       {/* Header Content */}
-      <div className="px-4 md:px-8 lg:px-16 py-3 md:py-4 flex justify-between items-center">
+      <div className="px-4 md:px-8 lg:px-16 py-3 md:py-4 flex justify-between items-center bg-[rgba(9,9,11,0.95)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
       {/* Left: CTA Button */}
       <button
         onClick={(e) => {
