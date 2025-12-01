@@ -2,10 +2,14 @@
 
 import Link from 'next/link';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
+import { Z_INDEX } from '@/lib/zIndex';
 
 export default function Footer() {
   return (
-    <footer className="py-12 md:py-16 px-4 md:px-8 bg-[#121215] border-t border-white/8">
+    <footer 
+      className="py-12 md:py-16 px-4 md:px-8 bg-[#121215] border-t border-white/10 relative"
+      style={{ zIndex: Z_INDEX.FOOTER }}
+    >
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-12">
           <div className="max-w-[300px]">

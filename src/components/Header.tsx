@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
+import { Z_INDEX } from '@/lib/zIndex';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,11 +18,8 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[99] px-16 py-4 flex justify-between items-center transition-all duration-300 ${
-        scrolled 
-          ? 'bg-[rgba(9,9,11,0.9)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' 
-          : ''
-      }`}
+      className="fixed top-0 left-0 right-0 px-4 md:px-8 lg:px-16 py-3 md:py-4 flex justify-between items-center transition-all duration-300 bg-[rgba(9,9,11,0.95)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+      style={{ zIndex: Z_INDEX.HEADER }}
     >
       {/* Left: CTA Button */}
       <button
@@ -103,9 +101,19 @@ export default function Header() {
       </nav>
       
       {/* Right: Logo */}
-      <Link href="#" className="font-english text-xl font-extrabold text-white">
+      <Link href="#" className="font-english text-lg md:text-xl font-extrabold text-white order-3 md:order-none">
         CoreSide
       </Link>
+      
+      {/* Mobile Menu Button */}
+      <button 
+        className="md:hidden w-8 h-8 flex items-center justify-center text-white"
+        aria-label="תפריט"
+      >
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </header>
   );
 }

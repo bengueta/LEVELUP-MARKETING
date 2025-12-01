@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Z_INDEX } from '@/lib/zIndex';
 
 export default function A11yPanel() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,8 @@ export default function A11yPanel() {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed top-1/2 left-0 -translate-y-1/2 z-[99] glass-effect rounded-r-lg p-3 cursor-pointer transition-all hover:pl-5 text-[#fafafa]"
+        className="fixed top-1/2 left-0 -translate-y-1/2 glass-effect rounded-r-lg p-3 cursor-pointer transition-all hover:pl-5 text-[#fafafa]"
+        style={{ zIndex: Z_INDEX.A11Y_PANEL }}
         aria-label="פתח הגדרות נגישות"
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-[22px] h-[22px]">
@@ -75,10 +77,14 @@ export default function A11yPanel() {
       {isOpen && (
         <>
           <div 
-            className="fixed inset-0 bg-black/50 z-[997] transition-opacity"
+            className="fixed inset-0 bg-black/50 transition-opacity"
+            style={{ zIndex: Z_INDEX.A11Y_PANEL - 1 }}
             onClick={() => setIsOpen(false)}
           />
-          <aside className={`fixed top-0 left-0 w-80 h-full glass-effect border-r border-white/10 z-[998] p-8 overflow-y-auto transition-transform duration-500 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <aside 
+            className={`fixed top-0 left-0 w-80 h-full glass-effect border-r border-white/10 p-8 overflow-y-auto transition-transform duration-500 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+            style={{ zIndex: Z_INDEX.A11Y_PANEL }}
+          >
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-xl font-bold">נגישות</h2>
               <button

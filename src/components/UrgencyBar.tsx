@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Z_INDEX } from '@/lib/zIndex';
 
 const socialProofMessages = [
   { name: 'יוסי', location: 'ירושלים', time: '5 דקות' },
@@ -90,7 +91,8 @@ export default function UrgencyBar() {
     <>
       <div 
         id="urgencyBar"
-        className="fixed top-0 left-0 right-0 z-[101] gradient-primary px-6 py-3 flex items-center justify-center gap-4 -translate-y-full"
+        className="fixed top-0 left-0 right-0 gradient-primary px-6 py-3 flex items-center justify-center gap-4 -translate-y-full"
+        style={{ zIndex: Z_INDEX.URGENCY_BAR }}
       >
         <span className="text-sm font-semibold text-white flex items-center gap-2 flex-wrap justify-center">
           <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +128,12 @@ export default function UrgencyBar() {
 
       {/* Social Proof Notification */}
       {showSocialProof && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] glass-effect-2 rounded-full px-6 py-3 animate-fadeIn" role="status" aria-live="polite">
+        <div 
+          className="fixed top-20 left-1/2 -translate-x-1/2 glass-effect-2 rounded-full px-6 py-3 animate-fadeIn" 
+          style={{ zIndex: Z_INDEX.URGENCY_BAR }}
+          role="status" 
+          aria-live="polite"
+        >
           <span className="text-sm text-white flex items-center gap-2">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span>

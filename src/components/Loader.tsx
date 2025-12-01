@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Z_INDEX } from '@/lib/zIndex';
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
@@ -53,7 +54,11 @@ export default function Loader() {
   if (isComplete) return null;
 
   return (
-    <div id="loader" className="fixed inset-0 bg-[#09090b] z-[10000] flex flex-col items-center justify-center gap-8">
+    <div 
+      id="loader" 
+      className="fixed inset-0 bg-[#09090b] flex flex-col items-center justify-center gap-8"
+      style={{ zIndex: Z_INDEX.LOADER }}
+    >
       <div className="loader-logo font-english text-[1.75rem] font-extrabold tracking-tight opacity-0">
         CORESIDE
       </div>

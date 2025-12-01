@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Heebo } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -41,7 +42,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-hebrew" style={{ backgroundColor: '#09090b' }}>{children}</body>
+      <body className="font-hebrew" style={{ backgroundColor: '#09090b' }}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
