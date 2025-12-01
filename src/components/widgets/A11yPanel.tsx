@@ -63,7 +63,24 @@ export default function A11yPanel() {
     html.setAttribute('dir', direction);
     html.setAttribute('lang', direction === 'rtl' ? 'he' : 'en');
     body.style.direction = direction;
+
+    // Save to localStorage
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('direction', direction);
+
+    // Dispatch events for Header sync
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme } }));
+    window.dispatchEvent(new CustomEvent('direction-change', { detail: { direction } }));
   }, [fontSize, contrast, motion, theme, direction]);
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
+    const savedDirection = localStorage.getItem('direction') as 'rtl' | 'ltr' | null;
+    
+    if (savedTheme) setTheme(savedTheme);
+    if (savedDirection) setDirection(savedDirection);
+  }, []);
 
   useEffect(() => {
     // Keyboard navigation

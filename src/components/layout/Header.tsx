@@ -8,6 +8,52 @@ import UrgencyBar from '@/components/widgets/UrgencyBar';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [direction, setDirection] = useState<'rtl' | 'ltr'>('rtl');
+
+  // Load settings from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
+    const savedDirection = localStorage.getItem('direction') as 'rtl' | 'ltr' | null;
+    
+    if (savedTheme) setTheme(savedTheme);
+    if (savedDirection) setDirection(savedDirection);
+  }, []);
+
+  // Listen for changes from A11yPanel
+  useEffect(() => {
+    const handleThemeChange = (e: CustomEvent) => {
+      setTheme(e.detail.theme);
+      localStorage.setItem('theme', e.detail.theme);
+    };
+    
+    const handleDirectionChange = (e: CustomEvent) => {
+      setDirection(e.detail.direction);
+      localStorage.setItem('direction', e.detail.direction);
+    };
+
+    window.addEventListener('theme-change' as any, handleThemeChange);
+    window.addEventListener('direction-change' as any, handleDirectionChange);
+
+    return () => {
+      window.removeEventListener('theme-change' as any, handleThemeChange);
+      window.removeEventListener('direction-change' as any, handleDirectionChange);
+    };
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: newTheme } }));
+  };
+
+  const toggleDirection = () => {
+    const newDirection = direction === 'rtl' ? 'ltr' : 'rtl';
+    setDirection(newDirection);
+    localStorage.setItem('direction', newDirection);
+    window.dispatchEvent(new CustomEvent('direction-change', { detail: { direction: newDirection } }));
+  };
 
   return (
     <header 
@@ -103,12 +149,26 @@ export default function Header() {
         
         {/* Icons */}
         <div className="flex items-center gap-4 mr-4">
-          <button className="w-8 h-8 flex items-center justify-center text-[#a1a1aa] hover:text-white transition-colors">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+          <button 
+            onClick={toggleTheme}
+            className="w-8 h-8 flex items-center justify-center text-[#a1a1aa] hover:text-white transition-colors"
+            aria-label={theme === 'dark' ? 'עבור למצב יום' : 'עבור למצב לילה'}
+          >
+            {theme === 'dark' ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            )}
           </button>
-          <button className="w-8 h-8 flex items-center justify-center text-[#a1a1aa] hover:text-white transition-colors">
+          <button 
+            onClick={toggleDirection}
+            className="w-8 h-8 flex items-center justify-center text-[#a1a1aa] hover:text-white transition-colors"
+            aria-label={direction === 'rtl' ? 'Switch to English (LTR)' : 'עבור לעברית (RTL)'}
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 002 2h2.945M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>

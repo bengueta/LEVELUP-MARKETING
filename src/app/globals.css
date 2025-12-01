@@ -314,23 +314,28 @@ body {
   background: transparent !important;
 }
 
-.light-theme .bg-\[#121215\] {
+.light-theme [class*="bg-[#121215]"],
+.light-theme [class*="bg-\\[\\#121215\\]"] {
   background-color: #f4f4f5 !important;
 }
 
-.light-theme .bg-\[#09090b\] {
+.light-theme [class*="bg-[#09090b]"],
+.light-theme [class*="bg-\\[\\#09090b\\]"] {
   background-color: #fafafa !important;
 }
 
-.light-theme .text-\[#fafafa\] {
+.light-theme [class*="text-[#fafafa]"],
+.light-theme [class*="text-\\[\\#fafafa\\]"] {
   color: #09090b !important;
 }
 
-.light-theme .text-\[#a1a1aa\] {
+.light-theme [class*="text-[#a1a1aa]"],
+.light-theme [class*="text-\\[\\#a1a1aa\\]"] {
   color: #27272a !important;
 }
 
-.light-theme .text-\[#71717a\] {
+.light-theme [class*="text-[#71717a]"],
+.light-theme [class*="text-\\[\\#71717a\\]"] {
   color: #52525b !important;
 }
 
