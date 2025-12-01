@@ -15,8 +15,10 @@ export default function ThreeDCard({ children, className = '', intensity = 15 }:
   const [rotateY, setRotateY] = useState(0);
 
   useEffect(() => {
+    if (!isHovered) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      if (!cardRef.current || !isHovered) return;
+      if (!cardRef.current) return;
 
       const rect = cardRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -32,9 +34,7 @@ export default function ThreeDCard({ children, className = '', intensity = 15 }:
       setRotateY(rotateYValue);
     };
 
-    if (isHovered) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);

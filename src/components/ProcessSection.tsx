@@ -116,9 +116,9 @@ export default function ProcessSection() {
         <div ref={stepsRef} className="relative">
           {/* Connection Line */}
           <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-20 hidden lg:block" 
-               style={{ width: 'calc(100% - 200px)', margin: '0 100px' }} />
+               style={{ width: 'calc(100% - 12rem)', margin: '0 6rem' }} />
 
-          <div className="grid grid-cols-5 gap-8 relative z-[1]">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-[1]">
             {steps.map((step, i) => (
               <ThreeDCard key={i} intensity={10}>
                 <div 

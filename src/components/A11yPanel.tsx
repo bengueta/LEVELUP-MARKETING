@@ -31,7 +31,16 @@ export default function A11yPanel() {
     } else {
       root.classList.remove('reduced-motion');
     }
-  }, [fontSize, contrast, motion]);
+
+    // Theme
+    if (theme === 'light') {
+      root.classList.add('light-theme');
+      root.classList.remove('dark-theme');
+    } else {
+      root.classList.add('dark-theme');
+      root.classList.remove('light-theme');
+    }
+  }, [fontSize, contrast, motion, theme]);
 
   useEffect(() => {
     // Keyboard navigation

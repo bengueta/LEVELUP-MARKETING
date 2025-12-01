@@ -9,7 +9,7 @@ export default function ROICalculator() {
   const monthlyPayment = monthlyRevenue * (partnershipPercentage / 100);
   const yearlyPayment = monthlyPayment * 12;
   const estimatedGrowth = monthlyRevenue * 3; // 3x growth estimate
-  const netProfit = estimatedGrowth - monthlyRevenue;
+  const netProfit = estimatedGrowth - monthlyRevenue - monthlyPayment;
 
   return (
     <div className="glass-effect-2 rounded-2xl p-8 mt-12">

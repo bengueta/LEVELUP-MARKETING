@@ -64,8 +64,8 @@ export default function Testimonials() {
   const visibleTestimonials = filteredTestimonials.slice(currentIndex, currentIndex + 3);
 
   const nextTestimonials = () => {
-    if (currentIndex + 3 < filteredTestimonials.length) {
-      setCurrentIndex(currentIndex + 1);
+    if (currentIndex + 3 < filteredTestimonials.length - 1) {
+      setCurrentIndex(Math.min(currentIndex + 1, filteredTestimonials.length - 3));
     }
   };
 

@@ -78,7 +78,7 @@ export default function TrustSection() {
         </header>
 
         {/* Case Studies */}
-        <div className="grid grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {caseStudies.map((study, i) => (
             <ThreeDCard key={i} className="trust-item">
               <div className="glass-effect-2 rounded-2xl p-8 h-full">
@@ -123,7 +123,7 @@ export default function TrustSection() {
         {/* Awards & Certifications */}
         <div className="glass-effect-2 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-white mb-6 text-center">פרסים והכרות</h3>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {awards.map((award, i) => (
               <div key={i} className="text-center trust-item">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">

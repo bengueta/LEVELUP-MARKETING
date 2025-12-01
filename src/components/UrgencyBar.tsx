@@ -48,11 +48,13 @@ export default function UrgencyBar() {
     }, 5000);
 
     // Social proof rotation
+    let socialProofTimeout: NodeJS.Timeout | null = null;
     const socialProofInterval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * socialProofMessages.length);
       setCurrentSocialProof(socialProofMessages[randomIndex]);
       setShowSocialProof(true);
-      setTimeout(() => setShowSocialProof(false), 5000);
+      if (socialProofTimeout) clearTimeout(socialProofTimeout);
+      socialProofTimeout = setTimeout(() => setShowSocialProof(false), 5000);
     }, 15000);
 
     // Show bar
@@ -66,6 +68,7 @@ export default function UrgencyBar() {
       clearInterval(interval);
       clearInterval(viewerInterval);
       clearInterval(socialProofInterval);
+      if (socialProofTimeout) clearTimeout(socialProofTimeout);
     };
   }, []);
 
@@ -81,7 +84,7 @@ export default function UrgencyBar() {
 
   if (isHidden) return null;
 
-  const progressPercentage = ((10 - spotsLeft) / 10) * 100;
+  const progressPercentage = Math.max(0, Math.min(100, ((10 - spotsLeft) / 10) * 100));
 
   return (
     <>
@@ -121,7 +124,7 @@ export default function UrgencyBar() {
 
       {/* Social Proof Notification */}
       {showSocialProof && (
-        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] glass-effect-2 rounded-full px-6 py-3 animate-fadeIn">
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-[100] glass-effect-2 rounded-full px-6 py-3 animate-fadeIn" role="status" aria-live="polite">
           <span className="text-sm text-white flex items-center gap-2">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <span>

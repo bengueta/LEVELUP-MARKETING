@@ -13,6 +13,8 @@ export default function ParallaxSection({ children, speed = 0.5, className = '' 
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    let rafId: number | null = null;
+    
     const handleScroll = () => {
       if (!sectionRef.current) return;
       
@@ -22,10 +24,18 @@ export default function ParallaxSection({ children, speed = 0.5, className = '' 
       setOffset(newOffset);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const optimizedScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener('scroll', optimizedScroll, { passive: true });
     handleScroll(); // Initial call
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', optimizedScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [speed]);
 
   return (

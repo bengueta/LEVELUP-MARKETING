@@ -80,8 +80,9 @@ export default function AIChatWidget() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-24 left-8 z-[90] w-16 h-16 gradient-primary rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-all glow-purple"
+        className="fixed bottom-32 left-8 z-[97] w-16 h-16 gradient-primary rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-all glow-purple"
         aria-label="פתח צ'אט"
+        aria-expanded={isOpen}
       >
         {isOpen ? (
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,7 +97,7 @@ export default function AIChatWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-32 left-8 z-[91] w-96 h-[500px] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        <div className="fixed bottom-32 left-8 z-[97] w-full sm:w-96 h-[500px] max-h-[calc(100vh-8rem)] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="chat-title">
           {/* Header */}
           <div className="gradient-primary px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -106,7 +107,7 @@ export default function AIChatWidget() {
                 </svg>
               </div>
               <div>
-                <div className="text-sm font-bold text-white">CoreSide Assistant</div>
+                <div id="chat-title" className="text-sm font-bold text-white">CoreSide Assistant</div>
                 <div className="text-xs text-white/80">זמין עכשיו</div>
               </div>
             </div>
@@ -186,10 +187,15 @@ export default function AIChatWidget() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="כתוב הודעה..."
                 className="flex-1 px-4 py-2 bg-[#1a1a1e] border border-white/10 rounded-full text-white text-sm focus:outline-none focus:border-purple-500"
+                aria-label="כתוב הודעה"
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') setIsOpen(false);
+                }}
               />
               <button
                 type="submit"
                 className="w-10 h-10 gradient-primary rounded-full flex items-center justify-center text-white hover:scale-110 transition-all"
+                aria-label="שלח הודעה"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

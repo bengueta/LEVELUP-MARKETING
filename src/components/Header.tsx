@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[100] px-16 py-4 flex justify-between items-center transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[99] px-16 py-4 flex justify-between items-center transition-all duration-300 ${
         scrolled 
           ? 'bg-[rgba(9,9,11,0.9)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' 
           : ''
