@@ -130,8 +130,8 @@ export default function Tracks() {
           {tracks.map((track, i) => (
             <article 
               key={i}
-              className={`glass-effect rounded-2xl p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 ${
-                track.popular ? 'border-2 border-purple-500/50' : ''
+              className={`glass-effect rounded-2xl p-6 md:p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 ${
+                track.popular ? 'border-2 border-purple-500/50 shadow-lg shadow-purple-500/20' : ''
               }`}
             >
               {track.popular && (

@@ -113,7 +113,7 @@ export default function Testimonials() {
 
         {/* Carousel */}
         <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-[1]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-[1]">
             {visibleTestimonials.map((testimonial, i) => (
               <article 
                 key={`${currentIndex}-${i}`}

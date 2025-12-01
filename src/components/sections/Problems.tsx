@@ -53,8 +53,8 @@ export default function Problems() {
                   {problem.number}
                 </div>
                 
-                <div className="relative w-18 h-18 mb-8">
-                  <div className="w-18 h-18 border-2 border-red-500/20 rounded-full flex items-center justify-center text-red-500 relative transition-all group-hover:border-red-500/50 group-hover:bg-red-500/10 group-hover:scale-105 group-hover:-rotate-5">
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="w-16 h-16 border-2 border-red-500/20 rounded-full flex items-center justify-center text-red-500 relative transition-all group-hover:border-red-500/50 group-hover:bg-red-500/10 group-hover:scale-105 group-hover:-rotate-5">
                     {problem.icon}
                   </div>
                 </div>
