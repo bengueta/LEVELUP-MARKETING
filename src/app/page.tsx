@@ -34,7 +34,7 @@ const SectionSkeleton = () => (
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#09090b] text-[#fafafa] overflow-x-hidden relative">
+    <main className="min-h-screen bg-[#09090b] text-[#fafafa] relative">
       <AnimatedBackground />
       <Loader />
       <UrgencyBar />

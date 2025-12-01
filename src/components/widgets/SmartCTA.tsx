@@ -10,9 +10,8 @@ interface SmartCTAProps {
 }
 
 export default function SmartCTA({ section }: SmartCTAProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [showExitIntent, setShowExitIntent] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   // Context-aware CTA text based on section
   const getCTAText = () => {
@@ -31,14 +30,7 @@ export default function SmartCTA({ section }: SmartCTAProps) {
   };
 
   useEffect(() => {
-    // Check if desktop
-    const checkDesktop = () => {
-      setIsDesktop(window.innerWidth > 768);
-    };
-    checkDesktop();
-    window.addEventListener('resize', checkDesktop);
-
-    // Show floating CTA after scrolling
+    // Show CTA bar after scrolling
     const handleScroll = () => {
       setIsVisible(window.scrollY > 400);
     };
@@ -46,7 +38,6 @@ export default function SmartCTA({ section }: SmartCTAProps) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', checkDesktop);
     };
   }, []);
 
