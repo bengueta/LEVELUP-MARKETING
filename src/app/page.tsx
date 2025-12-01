@@ -1,27 +1,27 @@
 'use client';
 
 import { lazy, Suspense } from 'react';
-import Header from '@/components/layout/Header';
+import Header from '@/components/Header';
 import Loader from '@/components/Loader';
-import UrgencyBar from '@/components/widgets/UrgencyBar';
-import A11yPanel from '@/components/widgets/A11yPanel';
+import UrgencyBar from '@/components/UrgencyBar';
+import A11yPanel from '@/components/A11yPanel';
 import AnimatedBackground from '@/components/AnimatedBackground';
-import WhatsAppFloat from '@/components/widgets/WhatsAppFloat';
-import SmartCTA from '@/components/widgets/SmartCTA';
-import AIChatWidget from '@/components/widgets/AIChatWidget';
-import Footer from '@/components/layout/Footer';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
+import SmartCTA from '@/components/SmartCTA';
+import AIChatWidget from '@/components/AIChatWidget';
+import Footer from '@/components/Footer';
 
 // Lazy load heavy components
-const Hero = lazy(() => import('@/components/sections/Hero'));
-const LogosSection = lazy(() => import('@/components/sections/LogosSection'));
-const Problems = lazy(() => import('@/components/sections/Problems'));
-const Tracks = lazy(() => import('@/components/sections/Tracks'));
-const ProcessSection = lazy(() => import('@/components/sections/ProcessSection'));
-const Testimonials = lazy(() => import('@/components/sections/Testimonials'));
-const TrustSection = lazy(() => import('@/components/sections/TrustSection'));
-const About = lazy(() => import('@/components/sections/About'));
-const FAQ = lazy(() => import('@/components/sections/FAQ'));
-const Contact = lazy(() => import('@/components/sections/Contact'));
+const Hero = lazy(() => import('@/components/Hero'));
+const LogosSection = lazy(() => import('@/components/LogosSection'));
+const Problems = lazy(() => import('@/components/Problems'));
+const Tracks = lazy(() => import('@/components/Tracks'));
+const ProcessSection = lazy(() => import('@/components/ProcessSection'));
+const Testimonials = lazy(() => import('@/components/Testimonials'));
+const TrustSection = lazy(() => import('@/components/TrustSection'));
+const About = lazy(() => import('@/components/About'));
+const FAQ = lazy(() => import('@/components/FAQ'));
+const Contact = lazy(() => import('@/components/Contact'));
 
 // Skeleton loader for lazy components
 const SectionSkeleton = () => (
