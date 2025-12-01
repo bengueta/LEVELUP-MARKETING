@@ -136,10 +136,10 @@ export default function ProcessSection() {
                   </div>
                   
                   {/* Icon - אנימציה קבועה עדינה */}
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg transition-all duration-500 ${
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-lg transition-all duration-500 will-change-transform ${
                     activeStep === i || hoveredStep === i ? 'scale-110 shadow-2xl ring-2 ring-purple-500/30' : 'animate-breathe'
                   }`}>
-                    <div className={`transition-transform duration-500 ${
+                    <div className={`transition-transform duration-500 will-change-transform ${
                       hoveredStep === i ? 'rotate-6' : ''
                     }`}>
                       {step.icon}

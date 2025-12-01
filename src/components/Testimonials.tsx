@@ -64,14 +64,15 @@ export default function Testimonials() {
   const visibleTestimonials = filteredTestimonials.slice(currentIndex, currentIndex + 3);
 
   const nextTestimonials = () => {
-    if (currentIndex + 3 < filteredTestimonials.length - 1) {
-      setCurrentIndex(Math.min(currentIndex + 1, filteredTestimonials.length - 3));
+    const maxIndex = Math.max(0, filteredTestimonials.length - 3);
+    if (currentIndex < maxIndex) {
+      setCurrentIndex(Math.min(currentIndex + 1, maxIndex));
     }
   };
 
   const prevTestimonials = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+      setCurrentIndex(Math.max(0, currentIndex - 1));
     }
   };
 
@@ -116,20 +117,24 @@ export default function Testimonials() {
             {visibleTestimonials.map((testimonial, i) => (
               <article 
                 key={`${currentIndex}-${i}`}
-                className="glass-effect-2 rounded-2xl p-8 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-purple-500/30 relative overflow-hidden group h-full"
+                className="glass-effect-2 rounded-2xl p-6 md:p-8 flex flex-col transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(147,51,234,0.3)] hover:border-purple-500/40 relative overflow-hidden group h-full will-change-transform"
               >
                 {/* Top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Breathing glow effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-purple-500/5 group-hover:via-purple-500/3 group-hover:to-blue-500/5 transition-all duration-500 pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-purple-500/8 group-hover:via-purple-500/5 group-hover:to-blue-500/8 transition-all duration-500 pointer-events-none" />
+                
+                {/* Depth shadow */}
+                <div className="absolute inset-0 rounded-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Rating Stars */}
                   <div className="flex gap-1 mb-6">
                     {[...Array(testimonial.rating)].map((_, j) => (
                       <svg 
                         key={j} 
-                        className="w-5 h-5 text-yellow-400" 
+                        className="w-5 h-5 text-yellow-400 transition-transform duration-300 group-hover:scale-110" 
+                        style={{ transitionDelay: `${j * 50}ms` }}
                         fill="currentColor" 
                         viewBox="0 0 24 24"
                       >
@@ -211,9 +216,9 @@ export default function Testimonials() {
 
               <button
                 onClick={nextTestimonials}
-                disabled={currentIndex + 3 >= filteredTestimonials.length}
+                disabled={currentIndex >= Math.max(0, filteredTestimonials.length - 3)}
                 className={`w-12 h-12 rounded-full glass-effect-2 flex items-center justify-center transition-all ${
-                  currentIndex + 3 >= filteredTestimonials.length ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
+                  currentIndex >= Math.max(0, filteredTestimonials.length - 3) ? 'opacity-50 cursor-not-allowed' : 'hover:scale-110'
                 }`}
                 aria-label="המלצה הבאה"
               >

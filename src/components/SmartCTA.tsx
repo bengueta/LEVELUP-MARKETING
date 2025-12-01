@@ -11,6 +11,7 @@ interface SmartCTAProps {
 export default function SmartCTA({ section }: SmartCTAProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [showExitIntent, setShowExitIntent] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Context-aware CTA text based on section
   const getCTAText = () => {
@@ -29,13 +30,23 @@ export default function SmartCTA({ section }: SmartCTAProps) {
   };
 
   useEffect(() => {
+    // Check if desktop
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
     // Show floating CTA after scrolling
     const handleScroll = () => {
       setIsVisible(window.scrollY > 400);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkDesktop);
+    };
   }, []);
 
   useEffect(() => {
@@ -50,20 +61,23 @@ export default function SmartCTA({ section }: SmartCTAProps) {
     return () => document.removeEventListener('mouseleave', handleMouseLeave);
   }, [showExitIntent]);
 
+  // Floating button should only show when sticky bar is NOT visible
+  const showFloating = isVisible && isDesktop; // Only on desktop
+
   return (
     <>
-      {/* Floating CTA Button - Only show when sticky bar is hidden */}
-      {isVisible && (
+      {/* Floating CTA Button - Only show when sticky bar is hidden on desktop */}
+      {showFloating && (
         <button
           onClick={() => smoothScrollToGSAP('contact', 100)}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[96] px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[96] px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-105 glow-purple border-2 border-white/20 shadow-2xl animate-fadeIn focus:outline-none focus:ring-2 focus:ring-purple-500 will-change-transform"
         >
           {getCTAText()}
         </button>
       )}
 
-      {/* Sticky CTA Bar */}
-      <div className={`fixed bottom-0 left-0 right-0 z-[95] glass-effect-2 border-t border-white/10 transition-transform duration-300 ${isVisible ? 'translate-y-0' : 'translate-y-full'}`}>
+      {/* Sticky CTA Bar - Show on mobile, hide on desktop when floating is visible */}
+      <div className={`fixed bottom-0 left-0 right-0 z-[95] glass-effect-2 border-t border-white/10 transition-transform duration-300 ${!isVisible ? 'translate-y-full' : showFloating ? 'translate-y-full' : 'translate-y-0'}`}>
         <div className="max-w-[1600px] mx-auto px-16 py-4 flex items-center justify-between">
           <div className="text-sm text-[#a1a1aa]">
             <span className="text-white font-semibold">מוכן להתחיל?</span> בואו נדבר על הפרויקט שלך

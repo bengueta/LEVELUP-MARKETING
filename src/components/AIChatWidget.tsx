@@ -80,7 +80,7 @@ export default function AIChatWidget() {
       {/* Chat Button - יציב וממוקד */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-[97] w-16 h-16 gradient-primary rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-all glow-purple"
+        className="fixed bottom-6 right-6 md:bottom-6 md:right-6 bottom-24 right-4 z-[97] w-16 h-16 gradient-primary rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-all glow-purple"
         aria-label="פתח צ'אט"
         aria-expanded={isOpen}
       >
@@ -97,7 +97,7 @@ export default function AIChatWidget() {
 
       {/* Chat Window - יציב וממוקד */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-[97] w-full sm:w-96 h-[500px] max-h-[calc(100vh-8rem)] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="chat-title">
+        <div className="fixed bottom-24 right-6 md:bottom-24 md:right-6 bottom-32 right-4 z-[97] w-full sm:w-96 h-[500px] max-h-[calc(100vh-8rem)] glass-effect-2 rounded-2xl shadow-2xl flex flex-col overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="chat-title">
           {/* Header */}
           <div className="gradient-primary px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">

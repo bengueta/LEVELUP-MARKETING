@@ -5,9 +5,9 @@ import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Footer() {
   return (
-    <footer className="py-16 px-8 bg-[#121215] border-t border-white/8">
+    <footer className="py-12 md:py-16 px-4 md:px-8 bg-[#121215] border-t border-white/8">
       <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 mb-8 md:mb-12">
           <div className="max-w-[300px]">
             <Link href="#" className="font-english text-[1.375rem] font-extrabold text-[#fafafa] flex items-center gap-2 mb-5">
               <span className="w-10 h-10 gradient-primary rounded-lg flex items-center justify-center text-white text-base font-extrabold">
@@ -80,8 +80,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center pt-8 border-t border-white/8">
-          <p className="text-[0.8125rem] text-[#71717a]">© 2024 CoreSide. כל הזכויות שמורות.</p>
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 md:pt-8 border-t border-white/8">
+          <p className="text-xs md:text-[0.8125rem] text-[#71717a] text-center sm:text-right">© 2024 CoreSide. כל הזכויות שמורות.</p>
         </div>
       </div>
     </footer>

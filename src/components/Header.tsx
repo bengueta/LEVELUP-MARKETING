@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[98] px-16 py-4 flex justify-between items-center transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[99] px-16 py-4 flex justify-between items-center transition-all duration-300 ${
         scrolled 
           ? 'bg-[rgba(9,9,11,0.9)] backdrop-blur-[30px] border-b border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)]' 
           : ''
@@ -26,13 +26,14 @@ export default function Header() {
       {/* Left: CTA Button */}
       <button
         onClick={() => smoothScrollToGSAP('contact', 100)}
-        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs md:text-sm font-semibold rounded-full transition-all hover:-translate-y-0.5 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
       >
-        התחל פרויקט
+        <span className="hidden sm:inline">התחל פרויקט</span>
+        <span className="sm:hidden">התחל</span>
       </button>
       
       {/* Center: Navigation */}
-      <nav className="flex items-center gap-8">
+      <nav className="hidden lg:flex items-center gap-8">
         <ul className="flex items-center gap-8 list-none">
           <li>
             <button

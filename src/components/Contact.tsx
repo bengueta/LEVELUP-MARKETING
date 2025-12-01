@@ -112,25 +112,34 @@ export default function Contact() {
             <button
               type="submit"
               disabled={isSubmitting || submitSuccess}
-              className="flex-shrink-0 px-8 py-4 h-[52px] gradient-primary text-white text-base font-extrabold rounded-xl transition-all hover:-translate-y-1 hover:scale-[1.02] glow-purple border-2 border-white/20 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide"
+              className="flex-shrink-0 px-6 md:px-8 py-3 md:py-4 h-[52px] gradient-primary text-white text-sm md:text-base font-bold rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/40 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-[#09090b] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:scale-100 relative overflow-hidden group"
             >
-              {submitSuccess ? (
-                <span className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  נשלח בהצלחה!
-                </span>
-              ) : isSubmitting ? (
-                'שולח...'
-              ) : (
-                <span className="flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                  שלח עכשיו - תשובה תוך 24 שעות
-                </span>
-              )}
+              <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              <span className="relative z-10 flex items-center gap-2">
+                {submitSuccess ? (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    נשלח בהצלחה!
+                  </>
+                ) : isSubmitting ? (
+                  <>
+                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    שולח...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                    שלח עכשיו - תשובה תוך 24 שעות
+                  </>
+                )}
+              </span>
             </button>
           </div>
 

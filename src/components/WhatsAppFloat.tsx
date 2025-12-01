@@ -2,7 +2,7 @@ export default function WhatsAppFloat() {
   return (
     <a
       href="https://wa.me/972586966886"
-      className="fixed bottom-6 left-6 z-[98] group"
+      className="fixed bottom-6 left-4 md:bottom-6 md:left-6 z-[97] group"
       aria-label="צור קשר בוואטסאפ"
     >
       <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 glass-effect px-4 py-3 rounded-lg text-xs font-medium whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-lg">

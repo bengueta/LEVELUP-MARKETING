@@ -368,6 +368,7 @@ body {
 
 .animate-breathe {
   animation: breathe 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* אנימציה קלאסית עדינה לסקשנים */
@@ -382,6 +383,17 @@ body {
 
 .animate-subtle-float {
   animation: subtleFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Performance optimizations */
+.glass-effect,
+.glass-effect-2 {
+  will-change: transform, opacity;
+}
+
+.gradient-primary {
+  will-change: transform;
 }
 
 @keyframes gradient-flow-text {
