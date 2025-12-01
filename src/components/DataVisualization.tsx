@@ -131,18 +131,18 @@ export default function DataVisualization() {
       </div>
 
       {/* Metrics */}
-      <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
-        <div>
+      <div className="grid grid-cols-3 gap-3 md:gap-4 mt-6 pt-6 border-t border-white/10">
+        <div className="text-center">
           <div className="text-xs text-[#71717a] mb-1">הכנסות</div>
-          <div className="text-xl font-bold text-white">2.4M</div>
+          <div className="text-lg md:text-xl font-bold text-white">2.4M</div>
         </div>
-        <div>
+        <div className="text-center">
           <div className="text-xs text-[#71717a] mb-1">המרה</div>
-          <div className="text-xl font-bold text-green-400">85%</div>
+          <div className="text-lg md:text-xl font-bold text-green-400">85%</div>
         </div>
-        <div>
+        <div className="text-center">
           <div className="text-xs text-[#71717a] mb-1">עלויות</div>
-          <div className="text-xl font-bold text-blue-400">12K</div>
+          <div className="text-lg md:text-xl font-bold text-blue-400">12K</div>
         </div>
       </div>
     </div>

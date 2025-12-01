@@ -203,10 +203,10 @@ export default function Testimonials() {
                     <button
                       key={i}
                       onClick={() => setCurrentIndex(i * 3)}
-                      className={`rounded-full transition-all duration-300 ${
+                      className={`rounded-full transition-all duration-300 hover:scale-110 ${
                         isActive 
                           ? 'bg-purple-500 w-8 h-2 shadow-lg shadow-purple-500/50' 
-                          : 'bg-white/20 w-2 h-2 hover:bg-white/30'
+                          : 'bg-white/20 w-2 h-2 hover:bg-white/40 hover:w-3'
                       }`}
                       aria-label={`עבור להמלצה ${i + 1}`}
                     />

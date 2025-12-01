@@ -45,7 +45,7 @@ export default function Problems() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {problems.map((problem, i) => (
             <article key={i} className="group relative perspective-1000">
               <div className="glass-effect rounded-[32px] p-10 h-full relative overflow-hidden transition-all duration-500 group-hover:-translate-y-4 group-hover:scale-[1.02] group-hover:border-red-500/30 group-hover:shadow-[0_40px_80px_-20px_rgba(239,68,68,0.4)]">

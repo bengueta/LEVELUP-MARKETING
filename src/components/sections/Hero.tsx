@@ -126,7 +126,7 @@ export default function Hero() {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 opacity-0 translate-y-5" id="heroFeatures">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 opacity-0 translate-y-5" id="heroFeatures">
             <div className="glass-effect rounded-2xl p-6 text-center">
               <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
                 <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

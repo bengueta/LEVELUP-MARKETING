@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function ROICalculator() {
   const [monthlyRevenue, setMonthlyRevenue] = useState(100000);
-  const [partnershipPercentage, setPartnershipPercentage] = useState(20);
+  const [partnershipPercentage, setPartnershipPercentage] = useState(7);
 
   const monthlyPayment = monthlyRevenue * (partnershipPercentage / 100);
   const yearlyPayment = monthlyPayment * 12;
@@ -15,7 +15,24 @@ export default function ROICalculator() {
     <div className="glass-effect-2 rounded-2xl p-8 mt-12">
       <h3 className="text-2xl font-bold text-white mb-6 text-center">מחשבון ROI - כמה תרוויח עם השותפות?</h3>
       
-      <div className="grid grid-cols-2 gap-6 mb-8">
+      {/* Percentage Buttons */}
+      <div className="flex justify-center gap-3 mb-8">
+        {[7, 10, 15].map((percent) => (
+          <button
+            key={percent}
+            onClick={() => setPartnershipPercentage(percent)}
+            className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
+              partnershipPercentage === percent
+                ? 'gradient-primary text-white glow-purple'
+                : 'glass-effect-2 text-[#a1a1aa] hover:text-white'
+            }`}
+          >
+            {percent}%
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
           <label className="block text-sm text-[#a1a1aa] mb-2">הכנסה חודשית צפויה (₪)</label>
           <input
@@ -41,18 +58,18 @@ export default function ROICalculator() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
-        <div className="glass-effect rounded-xl p-4 text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div className="glass-effect rounded-xl p-6 text-center">
           <div className="text-sm text-[#a1a1aa] mb-2">תשלום חודשי</div>
-          <div className="text-2xl font-bold text-white">{monthlyPayment.toLocaleString()}₪</div>
+          <div className="text-3xl font-bold text-white">{Math.round(monthlyPayment).toLocaleString()}₪</div>
         </div>
-        <div className="glass-effect rounded-xl p-4 text-center">
+        <div className="glass-effect rounded-xl p-6 text-center">
           <div className="text-sm text-[#a1a1aa] mb-2">תשלום שנתי</div>
-          <div className="text-2xl font-bold text-white">{yearlyPayment.toLocaleString()}₪</div>
+          <div className="text-3xl font-bold text-white">{Math.round(yearlyPayment).toLocaleString()}₪</div>
         </div>
-        <div className="glass-effect rounded-xl p-4 text-center border-2 border-green-500/50">
+        <div className="glass-effect rounded-xl p-6 text-center border-2 border-green-500/50 bg-green-500/5">
           <div className="text-sm text-[#a1a1aa] mb-2">רווח נטו צפוי</div>
-          <div className="text-2xl font-bold text-green-400">{netProfit.toLocaleString()}₪</div>
+          <div className="text-3xl font-bold text-green-400">{Math.round(netProfit).toLocaleString()}₪</div>
         </div>
       </div>
 
