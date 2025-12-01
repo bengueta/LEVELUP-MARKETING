@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import DataVisualization from '../DataVisualization';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
+import LiveConnections from '@/components/widgets/LiveConnections';
 
 export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
@@ -88,9 +89,8 @@ export default function Hero() {
         {/* Right: Content */}
         <div className="text-right order-1 lg:order-2">
           {/* Trust Badge */}
-          <div id="heroBadge" className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-600/30 rounded-full text-sm font-medium text-purple-300 mb-6 opacity-0 translate-y-5">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span>₪0 מראש - אנחנו מרוויחים רק כשאתה מרוויח</span>
+          <div id="heroBadge" className="mb-6 opacity-0 translate-y-5">
+            <LiveConnections />
           </div>
 
           {/* Headline */}

@@ -3,23 +3,13 @@
 import { useEffect, useState } from 'react';
 import { Z_INDEX } from '@/lib/zIndex';
 
-const socialProofMessages = [
-  { name: 'יוסי', location: 'ירושלים', time: '5 דקות' },
-  { name: 'שירה', location: 'תל אביב', time: '12 דקות' },
-  { name: 'מיכאל', location: 'חיפה', time: '18 דקות' },
-  { name: 'דני', location: 'באר שבע', time: '25 דקות' },
-];
-
 export default function UrgencyBar() {
   const [days, setDays] = useState('00');
   const [hours, setHours] = useState('00');
   const [minutes, setMinutes] = useState('00');
   const [seconds, setSeconds] = useState('00');
-  const [isVisible, setIsVisible] = useState(true);
   const [viewerCount, setViewerCount] = useState(12);
   const [spotsLeft, setSpotsLeft] = useState(3);
-  const [currentSocialProof, setCurrentSocialProof] = useState(socialProofMessages[0]);
-  const [showSocialProof, setShowSocialProof] = useState(false);
 
   useEffect(() => {
     const endDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000);
@@ -47,24 +37,9 @@ export default function UrgencyBar() {
       });
     }, 5000);
 
-    // Social proof rotation
-    let socialProofTimeout: NodeJS.Timeout | null = null;
-    const socialProofInterval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * socialProofMessages.length);
-      setCurrentSocialProof(socialProofMessages[randomIndex]);
-      setShowSocialProof(true);
-      if (socialProofTimeout) clearTimeout(socialProofTimeout);
-      socialProofTimeout = setTimeout(() => setShowSocialProof(false), 5000);
-    }, 15000);
-
-    // Bar is always visible - part of header
-    setIsVisible(true);
-
     return () => {
       clearInterval(interval);
       clearInterval(viewerInterval);
-      clearInterval(socialProofInterval);
-      if (socialProofTimeout) clearTimeout(socialProofTimeout);
     };
   }, []);
 
@@ -102,22 +77,6 @@ export default function UrgencyBar() {
 
       </div>
 
-      {/* Social Proof Notification */}
-      {showSocialProof && (
-        <div 
-          className="fixed top-20 left-1/2 -translate-x-1/2 glass-effect-2 rounded-full px-6 py-3 animate-fadeIn" 
-          style={{ zIndex: Z_INDEX.URGENCY_BAR }}
-          role="status" 
-          aria-live="polite"
-        >
-          <span className="text-sm text-white flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <span>
-              <strong>{currentSocialProof.name}</strong> מ-{currentSocialProof.location} התחיל פרויקט לפני {currentSocialProof.time}
-            </span>
-          </span>
-        </div>
-      )}
     </>
   );
 }
