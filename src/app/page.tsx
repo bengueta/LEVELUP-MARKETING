@@ -17,7 +17,7 @@ import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Loader from '@/components/Loader';
 import UrgencyBar from '@/components/UrgencyBar';
 import A11yPanel from '@/components/A11yPanel';
-import ParticleBackground from '@/components/ParticleBackground';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import SmartCTA from '@/components/SmartCTA';
 import AIChatWidget from '@/components/AIChatWidget';
 
@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#09090b] text-[#fafafa] overflow-x-hidden relative">
-      <ParticleBackground />
+      <AnimatedBackground />
       <Loader />
       <UrgencyBar />
       <A11yPanel />

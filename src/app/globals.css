@@ -21,6 +21,9 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* תיקון בעיית Chrome - רקע שחור */
+  background: #09090b;
+  height: 100%;
 }
 
 body {
@@ -37,6 +40,8 @@ body {
   min-height: 100vh;
   /* Breathing space - יותר נושם */
   line-height: 1.7;
+  /* תיקון Chrome - וידוא רקע */
+  background-color: #09090b;
 }
 
 /* Spacing improvements - יותר נושם */

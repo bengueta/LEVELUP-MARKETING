@@ -33,12 +33,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="he" dir="rtl" className={`${inter.variable} ${heebo.variable}`}>
+    <html lang="he" dir="rtl" className={`${inter.variable} ${heebo.variable}`} style={{ backgroundColor: '#09090b' }}>
       <head>
+        <meta name="theme-color" content="#09090b" />
+        <meta name="msapplication-navbutton-color" content="#09090b" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-hebrew">{children}</body>
+      <body className="font-hebrew" style={{ backgroundColor: '#09090b' }}>{children}</body>
     </html>
   );
 }
