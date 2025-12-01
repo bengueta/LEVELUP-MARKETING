@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import DataVisualization from '../DataVisualization';
+import DataVisualization from './DataVisualization';
 import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 export default function Hero() {
