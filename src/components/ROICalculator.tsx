@@ -12,7 +12,7 @@ export default function ROICalculator() {
   const netProfit = estimatedGrowth - monthlyRevenue - monthlyPayment;
 
   return (
-    <div className="glass-effect-2 rounded-2xl p-8 mt-12">
+    <div id="roicalculator" className="glass-effect-2 rounded-2xl p-8 mt-12">
       <h3 className="text-2xl font-bold text-white mb-6 text-center">מחשבון ROI - כמה תרוויח עם השותפות?</h3>
       
       {/* Percentage Buttons */}

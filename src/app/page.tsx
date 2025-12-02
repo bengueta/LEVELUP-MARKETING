@@ -8,6 +8,8 @@ import AnimatedBackground from '@/components/AnimatedBackground';
 import WhatsAppFloat from '@/components/widgets/WhatsAppFloat';
 import AIChatWidget from '@/components/widgets/AIChatWidget';
 import Footer from '@/components/layout/Footer';
+import SmartCTA from '@/components/widgets/SmartCTA';
+import CookieBanner from '@/components/widgets/CookieBanner';
 
 // Lazy load heavy components
 const Hero = lazy(() => import('@/components/sections/Hero'));
@@ -37,7 +39,7 @@ export default function Home() {
       <Loader />
       <A11yPanel />
       <Header />
-      
+      <div className="relative z-2 flex flex-col gap-20">
       <Suspense fallback={<SectionSkeleton />}>
         <Hero />
       </Suspense>
@@ -77,10 +79,12 @@ export default function Home() {
       <Suspense fallback={<SectionSkeleton />}>
         <Contact />
       </Suspense>
-      
+      </div>
+      <SmartCTA section="hero" />
       <Footer />
       <WhatsAppFloat />
       <AIChatWidget />
+      <CookieBanner />
     </main>
   );
 }

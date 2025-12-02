@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Heebo } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { I18nProvider } from "@/lib/i18n";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -42,8 +44,25 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-hebrew" style={{ backgroundColor: '#09090b' }}>
-        {children}
+      <body className="font-hebrew dark-theme" style={{ backgroundColor: '#09090b' }}>
+        <I18nProvider>
+          {children}
+          <div id="google_translate_element" className="hidden" aria-hidden="true" />
+        </I18nProvider>
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              if (!window.google?.translate) return;
+              new window.google.translate.TranslateElement(
+                {pageLanguage: 'he', includedLanguages: 'he,en', autoDisplay: false},
+                'google_translate_element'
+              );
+              window.dispatchEvent(new CustomEvent('google-translate-ready'));
+            }
+            window.googleTranslateElementInit = googleTranslateElementInit;
+          `}
+        </Script>
+        <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
         <SpeedInsights />
       </body>
     </html>

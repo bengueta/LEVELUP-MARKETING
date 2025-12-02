@@ -8,10 +8,10 @@ export default function WhatsAppFloat() {
       href="https://wa.me/972586966886"
       className="fixed bottom-6 left-4 md:bottom-6 md:left-6 group"
       style={{ zIndex: Z_INDEX.WIDGETS }}
-      aria-label="צור קשר בוואטסאפ"
+      aria-label="צור קשר בוואטסאפ לקבלת ROI"
     >
       <div className="absolute right-full mr-3 top-1/2 -translate-y-1/2 glass-effect px-4 py-3 rounded-lg text-xs font-medium whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-lg">
-        דבר איתנו עכשיו
+        שאל על +340% ROI
       </div>
       <div className="w-16 h-16 bg-gradient-to-br from-[#25d366] to-[#20ba5a] rounded-full flex items-center justify-center text-white shadow-[0_8px_32px_rgba(37,211,102,0.5),0_0_40px_rgba(37,211,102,0.3)] transition-all hover:scale-110 hover:-translate-y-1 border-3 border-white/20 animate-pulse">
         <svg viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">

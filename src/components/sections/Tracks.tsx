@@ -10,20 +10,19 @@ export default function Tracks() {
   
   const tracks = [
     {
-      type: 'established',
+      type: 'startup',
       badge: null,
       popular: false,
-      title: 'חברות מבוססות',
-      price: 'מ-₪50,000',
-      subtitle: 'חוזה מותאם מלא לכל הצרכים שלכם',
+      title: 'יזמים מתחילים',
+      price: 'מ-₪2,500/חודש',
+      subtitle: 'התחילו את הדרך עם תשלומים חודשיים קטנים',
       features: [
-        'פיתוח + עיצוב + שיווק + לוגיסטיקה',
-        'יחס אישי וצוות כדי עלכם',
-        'בחירת לקוחות - אנחנו בוחרים בזהירות',
-        'תמיכה ממשכת עד לעסק מרוויח'
+        'האפליקציה שלכם מתפתחת עם הבזק שלכם',
+        'אנחנו כאן כל יום להנחות וליישם',
+        'התחייבות ארוכת טווח - לא מעזבים אחרי לא',
+        'התמיכה המלאה שלנו במהלך הדרך'
       ],
-      cta: 'קבלו הצעה',
-      ctaStyle: 'bg-[#1a1a1e] text-white hover:bg-[#242428]'
+      cta: 'בואו נדבר',
     },
     {
       type: 'business',
@@ -39,23 +38,21 @@ export default function Tracks() {
         'מ-שותפות מלאה: גילוי עד ניהול חנויות'
       ],
       cta: 'בואו נהיה שותפים',
-      ctaStyle: 'gradient-primary text-white glow-purple'
     },
     {
-      type: 'startup',
+      type: 'established',
       badge: null,
       popular: false,
-      title: 'יזמים מתחילים',
-      price: 'מ-₪2,500/חודש',
-      subtitle: 'התחילו את הדרך עם תשלומים חודשיים קטנים',
+      title: 'חברות מבוססות',
+      price: 'מ-₪50,000',
+      subtitle: 'חוזה מותאם מלא לכל הצרכים שלכם',
       features: [
-        'האפליקציה שלכם מתפתחת עם הבזק שלכם',
-        'אנחנו כאן כל יום להנחות וליישם',
-        'התחייבות ארוכת טווח - לא מעזבים אחרי לא',
-        'התמיכה המלאה שלנו במהלך הדרך'
+        'פיתוח + עיצוב + שיווק + לוגיסטיקה',
+        'יחס אישי וצוות כדי עלכם',
+        'בחירת לקוחות - אנחנו בוחרים בזהירות',
+        'תמיכה ממשכת עד לעסק מרוויח'
       ],
-      cta: 'בואו נדבר',
-      ctaStyle: 'bg-[#1a1a1e] text-white hover:bg-[#242428]'
+      cta: 'קבלו הצעה',
     }
   ];
 
@@ -126,21 +123,28 @@ export default function Tracks() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-[1]">
+        <div className="text-center mb-8 max-w-[760px] mx-auto text-[#cbd5f5] text-sm">
+          <span className="text-white font-semibold">בוחרים מסלול עם תמיכה בנתונים:</span> 
+          +340% צמיחה ממוצעת מעל הממוצע, המרה של 85% בכל מסלול, וכיסוי עלויות שקוף של 12K בחודש.
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 relative z-[1] items-stretch">
           {tracks.map((track, i) => (
             <article 
               key={i}
-              className={`glass-effect rounded-2xl p-6 md:p-8 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 ${
-                track.popular ? 'border-2 border-purple-500/50 shadow-lg shadow-purple-500/20' : ''
-              }`}
+              className={`group glass-effect rounded-3xl p-6 md:p-8 relative overflow-hidden transition-all duration-500 flex flex-col ${
+                track.popular 
+                  ? 'md:scale-105 md:-my-4 border-2 border-purple-500/60 shadow-[0_0_60px_rgba(147,51,234,0.3)] bg-gradient-to-b from-purple-900/20 to-transparent z-10' 
+                  : 'border border-white/10 hover:border-purple-500/40'
+              } hover:-translate-y-3 hover:shadow-[0_20px_60px_rgba(147,51,234,0.25)]`}
             >
               {track.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-purple-500/30">
                   {track.badge}
                 </div>
               )}
 
-              <div className="relative z-[1]">
+              <div className="relative z-[1] flex flex-col flex-1">
                 <h3 className="text-2xl font-bold mb-2 text-white">
                   {track.title}
                 </h3>
@@ -149,11 +153,11 @@ export default function Tracks() {
                   {track.subtitle}
                 </p>
 
-                <div className="text-lg font-bold text-purple-400 mb-6">
+                <div className={`text-xl font-bold mb-6 ${track.popular ? 'text-purple-300' : 'text-purple-400'}`}>
                   {track.price}
                 </div>
 
-                <ul className="flex flex-col gap-3 mb-8">
+                <ul className="flex flex-col gap-3 mb-8 flex-1">
                   {track.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-3">
                       <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -173,7 +177,11 @@ export default function Tracks() {
                     e.preventDefault();
                     smoothScrollToGSAP('contact', 100);
                   }}
-                  className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full text-sm font-bold transition-all hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-500 ${track.ctaStyle}`}
+                  className={`inline-flex items-center justify-center gap-2 w-full px-6 py-4 rounded-full text-sm font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 mt-auto ${
+                    track.popular 
+                      ? 'gradient-primary text-white shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.02]' 
+                      : 'gradient-primary text-white opacity-90 hover:opacity-100 hover:scale-[1.02]'
+                  }`}
                 >
                   {track.cta}
                   <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -183,6 +191,21 @@ export default function Tracks() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-10 lg:mt-12 p-8 rounded-[32px] border border-white/10 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.15),_transparent)] text-[#cbd5f5] flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex-1 text-base leading-relaxed">
+            כל מסלול מגיע עם מפת תהליך של 5 שלבים. נסו אותו בפועל בחסות התהליך למטה וראו איך המהירות והאיכות נשמרות.
+          </div>
+          <button
+            onClick={() => smoothScrollToGSAP('process', 120)}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/30 text-white text-sm font-semibold hover:border-white transition-all"
+          >
+            ראו את התהליך
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
         </div>
 
         {/* Partnership Explanation */}

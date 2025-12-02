@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { smoothScrollToGSAP } from '@/lib/smoothScroll';
 
 const steps = [
   {
@@ -112,6 +113,10 @@ export default function ProcessSection() {
           </p>
         </header>
 
+        <div className="max-w-[840px] mx-auto text-center text-sm text-[#cbd5f5] mb-10">
+          התהליך הזה מחבר את ה-ROI שמוצג ב-Hero למסלולי ה-Tracks. כל מבנה מלווה אותך - מהפגישת ההיכרות ועד תהליך צמיחה מתמשך.
+        </div>
+
         <div ref={stepsRef} className="relative">
           {/* Connection Line */}
           <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 opacity-20 hidden lg:block" 
@@ -168,6 +173,21 @@ export default function ProcessSection() {
                 </div>
             ))}
           </div>
+
+        <div className="mt-10 text-center text-[#cbd5f5] max-w-[700px] mx-auto">
+          <p className="mb-4">
+            בחרתם מסלול? עכשיו אתם יודעים איך כל שלב ייראה. התהליך הזה נושא אתכם מה-Demo ועד צמיחה חוזרת.
+          </p>
+          <button
+            onClick={() => smoothScrollToGSAP('contact', 140)}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/30 text-white text-sm font-semibold hover:border-white transition"
+          >
+            קבעו פגישה והתחילו
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
 
           {/* Progress Indicator */}
           <div className="mt-12 text-center">

@@ -10,6 +10,40 @@ export default function Hero() {
   const [viewerCount, setViewerCount] = useState(12);
   const [chartReady, setChartReady] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement>(null);
+  const heroHighlights = [
+    {
+      label: 'הכנסות ממוצעות',
+      value: '2.4M',
+      detail: 'בדולרים בשנה הראשונה'
+    },
+    {
+      label: 'המרה ממוצעת',
+      value: '85%',
+      detail: 'מוביל לפגישות סגירה'
+    },
+    {
+      label: 'עלויות ניהול',
+      value: '12K',
+      detail: 'תחזוקה חודשית מלאה'
+    },
+  ];
+  const heroBenefits = [
+    {
+      title: '+10 שנים',
+      description: 'ניסיון בבניית מערכות עם צמיחה מהירה והוכחות מהשטח.',
+      icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+    },
+    {
+      title: 'תוכנית בוטיק',
+      description: 'יחס אישי, צוות ייעודי והבנה עמוקה של האתגרים העסקיים.',
+      icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+    },
+    {
+      title: 'סקייל חכם',
+      description: 'שילוב של פיתוח, מחקר ושיווק כדי להניע לקוחות למיקוד תוצאות.',
+      icon: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z'
+    },
+  ];
 
   useEffect(() => {
     const animate = async () => {
@@ -109,13 +143,13 @@ export default function Hero() {
           </p>
 
           {/* CTA */}
-          <div id="heroActions" className="mb-10 opacity-0 translate-y-5">
+          <div id="heroActions" className="mb-6 flex flex-wrap justify-end gap-3 opacity-0 translate-y-5">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 smoothScrollToGSAP('contact', 100);
               }}
-              className="inline-flex items-center gap-3 px-8 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group ripple-effect focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="inline-flex items-center gap-3 px-7 py-4 gradient-primary text-white text-base font-bold rounded-full transition-all hover:-translate-y-1 hover:scale-[1.05] glow-purple border-2 border-white/20 relative overflow-hidden group"
             >
               <span className="relative z-10">התחל פרויקט</span>
               <svg className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -123,38 +157,42 @@ export default function Hero() {
               </svg>
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
+            <Link
+              href="#roicalculator"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 rounded-full text-sm font-semibold hover:border-white transition-all text-white"
+            >
+              צפה ב-ROI שנוצר
+              <span className="text-xs text-[#a1a1aa]">עוד רגע</span>
+            </Link>
           </div>
 
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 opacity-0 translate-y-5" id="heroFeatures">
-            <div className="glass-effect rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div className="text-xl font-bold text-white mb-2">+10 שנים</div>
-              <div className="text-sm text-[#a1a1aa]">ניסיון עמוק בעסקים והצלחות</div>
+          <div id="heroFeatures" className="opacity-0 translate-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+              {heroHighlights.map((highlight) => (
+                <article key={highlight.label} className="glass-effect rounded-2xl p-5 text-left">
+                  <p className="text-xs text-[#a1a1aa] uppercase tracking-[2px] mb-2">{highlight.label}</p>
+                  <p className="text-3xl font-black text-white leading-none">{highlight.value}</p>
+                  <p className="text-sm text-[#9ca3af] mt-1">{highlight.detail}</p>
+                </article>
+              ))}
             </div>
-            
-            <div className="glass-effect rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
-              <div className="text-xl font-bold text-white mb-2">תוכנית בוטיק</div>
-              <div className="text-sm text-[#a1a1aa]">יחס אישי, לא תבניות</div>
-            </div>
-            
-            <div className="glass-effect rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-              </div>
-              <div className="text-xl font-bold text-white mb-2">תשלום חודשי</div>
-              <div className="text-sm text-[#a1a1aa]">התחלה קטנה, גדילה גדולה</div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {heroBenefits.map((benefit) => (
+                <article key={benefit.title} className="glass-effect rounded-2xl p-6 text-right flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xl font-bold text-white">{benefit.title}</h3>
+                      <p className="text-sm text-[#a1a1aa]">{benefit.description}</p>
+                    </div>
+                    <div className="w-11 h-11 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-2xl flex items-center justify-center">
+                      <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={benefit.icon} />
+                      </svg>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
